@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-center">Contact</h3>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="<%= model.name %>" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="<%= model.email %>" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="subject" name="subject" value="<%= model.subject %>" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="body" class="form-label">Body</label>
+            <textarea class="form-control" id="body" name="body" rows="5" required><%= model.body %></textarea>
+          </div>
+          
+          <% if (errors && errors.length > 0) { %>
+            <div class="alert alert-danger">
+              <% errors.forEach(error => { %>
+                <div><%= error.msg %></div>
+              <% }); %>
+            </div>
+          <% } %>
+          
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

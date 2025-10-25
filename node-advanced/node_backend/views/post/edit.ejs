@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h3>Edit Post</h3>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="body" class="form-label">Body</label>
+            <textarea class="form-control" id="body" name="body" rows="10" required><%= post.body %></textarea>
+          </div>
+          
+          <% if (errors && errors.length > 0) { %>
+            <div class="alert alert-danger">
+              <% errors.forEach(error => { %>
+                <div><%= error.msg %></div>
+              <% }); %>
+            </div>
+          <% } %>
+          
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="/post/<%= post.id %>" class="btn btn-secondary me-md-2">Cancel</a>
+            <button type="submit" class="btn btn-primary">Update Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

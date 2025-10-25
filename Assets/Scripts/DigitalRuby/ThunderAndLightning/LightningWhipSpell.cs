@@ -92,8 +92,8 @@ namespace DigitalRuby.ThunderAndLightning
 						Rigidbody component = lightningWhipSpell.WhipStart.transform.GetChild(i).gameObject.GetComponent<Rigidbody>();
 						if (component != null)
 						{
-							component.drag = 0f;
-							component.velocity = Vector3.zero;
+							component.linearDamping = 0f;
+							component.linearVelocity = Vector3.zero;
 							component.angularVelocity = Vector3.zero;
 						}
 					}
@@ -154,9 +154,9 @@ namespace DigitalRuby.ThunderAndLightning
 						Rigidbody component2 = lightningWhipSpell.WhipStart.transform.GetChild(j).gameObject.GetComponent<Rigidbody>();
 						if (component2 != null)
 						{
-							component2.velocity = Vector3.zero;
+							component2.linearVelocity = Vector3.zero;
 							component2.angularVelocity = Vector3.zero;
-							component2.drag = 0.5f;
+							component2.linearDamping = 0.5f;
 						}
 					}
 					return false;
