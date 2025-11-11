@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/GameBase/DesignHomeDemo/Scenes/SplashScene.unity
+    path: Assets/GameBase/Scenes/SplashScene.unity
     guid: 8229e52dd83197a49a9953afcdb94d1c
   - enabled: 1
-    path: Assets/GameBase/DesignHomeDemo/Scenes/MainUI.unity
+    path: Assets/GameBase/Scenes/MainUI.unity
     guid: f2e3977dc10a3db47badf157f0702122
   - enabled: 1
     path: Assets/GameBase/GGMatch3/Scene/Match3Game.unity
@@ -33,3 +33,4 @@ EditorBuildSettings:
     path: Assets/Art_HomeDesign/Rooms/0035_KitchenCountry/0035_KitchenCountry.unity
     guid: 3ed6e69dede29104191639b96fb088ec
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
