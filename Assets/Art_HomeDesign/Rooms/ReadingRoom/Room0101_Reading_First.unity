@@ -346,6 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1254948087}
+  - component: {fileID: 1254948088}
   m_Layer: 0
   m_Name: bookshelf_r1
   m_TagString: Untagged
@@ -369,6 +370,21 @@ Transform:
   - {fileID: 1908974929}
   m_Father: {fileID: 568174447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1254948088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254948086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc3db8341542dc42f83f25976ab7635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VisualObjectVariation
+  savedThumbnailSprite: {fileID: 0}
+  sprites: []
+  visualObjectBehaviour: {fileID: 0}
 --- !u!1 &1385588353
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,8 +623,8 @@ Transform:
   m_GameObject: {fileID: 1908974928}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 114.6, y: -848.8, z: 0}
+  m_LocalScale: {x: 70, y: 70, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1052136339}
@@ -712,6 +728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2109264120}
+  - component: {fileID: 2109264121}
   m_Layer: 0
   m_Name: bookshelf_r2
   m_TagString: Untagged
@@ -735,6 +752,21 @@ Transform:
   - {fileID: 1949786325}
   m_Father: {fileID: 568174447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2109264121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109264119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc3db8341542dc42f83f25976ab7635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VisualObjectVariation
+  savedThumbnailSprite: {fileID: 0}
+  sprites: []
+  visualObjectBehaviour: {fileID: 0}
 --- !u!1 &1790424290772914336
 GameObject:
   m_ObjectHideFlags: 0
@@ -7361,7 +7393,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 392
+  m_SortingOrder: 6250
   m_Sprite: {fileID: 21300000, guid: a7e227e0d9963cc468c37e5a3ce52416, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
