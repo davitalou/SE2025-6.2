@@ -946,6 +946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 568174447}
   - component: {fileID: 568174448}
+  - component: {fileID: 568174449}
   m_Layer: 0
   m_Name: bookshelf
   m_TagString: Untagged
@@ -1028,6 +1029,65 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &568174449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568174446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VisualObjectBehaviour
+  defaultVariation: {fileID: 1254948088}
+  variations:
+  - {fileID: 1254948088}
+  - {fileID: 2109264121}
+  allVariations: []
+  visualObject:
+    name: 
+    variations: []
+    index: 0
+    sceneObjectInfo:
+      objectName: 
+      displayName: 
+      backwardDependencies: []
+      price:
+        currency: 2
+        cost: 1
+      autoSelect: 0
+      toSayAfterOpen: []
+      groupIndex: -1
+      isMarkersAbove: 0
+      thumbnailNamePrefix: 
+      iconSpriteName: 
+      animationType: 0
+      animationSettingsName: 
+      usedDashedLineForIconHandlePosition: 0
+      hideCharacterWhenSelectingVariations: 0
+      isVisualObjectOverriden: 0
+      objectOverride:
+        isSettingSaved: 0
+        visualObjectName: 
+        iconHandlePositionOffset: {x: 0, y: 0, z: 0}
+        iconHandlePositionScale: {x: 1, y: 1, z: 1}
+        iconHandleRotation: {x: 0, y: 0, z: 0}
+      sceneName: 
+    hitboxes: []
+    hitboxTriangles: []
+    hitboxesList: []
+    dashLines: []
+    iconHandlePosition: {x: 0, y: 0, z: 0}
+    hasDefaultVariation: 0
+    defaultVariation:
+      name: 
+      sprites: []
+      thumbnailName: 
+      thumbnailSprite: {fileID: 0}
+      hitboxTriangles: []
+  characterBehaviour: {fileID: 0}
 --- !u!1 &659807011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,9 +1992,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc3db8341542dc42f83f25976ab7635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualObjectVariation
-  savedThumbnailSprite: {fileID: 0}
-  sprites: []
-  visualObjectBehaviour: {fileID: 0}
+  savedThumbnailSprite: {fileID: 21300000, guid: 3bb395eee636021458590e229ee2be8b,
+    type: 3}
+  sprites:
+  - {fileID: 1908974930}
+  visualObjectBehaviour: {fileID: 568174449}
 --- !u!1 &1264720799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,7 +2550,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6550
   m_Sprite: {fileID: 21300000, guid: 3bb395eee636021458590e229ee2be8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3503,8 +3565,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualObjectVariation
   savedThumbnailSprite: {fileID: 0}
-  sprites: []
-  visualObjectBehaviour: {fileID: 0}
+  sprites:
+  - {fileID: 1949786326}
+  visualObjectBehaviour: {fileID: 568174449}
 --- !u!1 &2136318233
 GameObject:
   m_ObjectHideFlags: 0
