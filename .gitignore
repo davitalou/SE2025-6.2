@@ -80,3 +80,5 @@ Logs/
 Temp/
 *.dwlt
 *.wlt
+
+UserSettings/
