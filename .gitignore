@@ -72,3 +72,11 @@ crashlytics-build.properties
 # Crash file
 *[Cc]rash*.json
 *[Cc]crash*.lock
+
+# Unity generated files
+UserSettings/
+Library/
+Logs/
+Temp/
+*.dwlt
+*.wlt
