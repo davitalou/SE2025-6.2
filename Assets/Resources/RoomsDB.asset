@@ -10,16 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f925be6949c7e8f1c94da952db49c308, type: 3}
-  m_Name: "RoomsDB"
+  m_Name: RoomsDB
   m_EditorClassIdentifier: 
   roomsList:
-  - name: "Veranda"
-    sceneName: "Room0090_Veranda_First"
-    displayName: "Veranda"
+  - name: ReadingRoom
+    sceneName: ReadingRoom
+    displayName: ReadingRoom
     description: 
     getFromAssetBundleOnEditor: 0
-    assetBundleURLOSX: "http:\x2f\x2fggmultiplayer-backend.s3.amazonaws.com\x2fggmatch3\x2frooms\x2fOSX\x2flivingroom1"
-    assetBundleURLAndroid: "http:\x2f\x2fggmultiplayer-backend.s3.amazonaws.com\x2fggmatch3\x2frooms\x2fv1\x2flivingroom1"
+    assetBundleURLOSX: 
+    assetBundleURLAndroid: 
+    assetBundleURLIOS: 
+    cardSprite: {fileID: 21300000, guid: 07852970ef5877140bd2b8be5a957d17, type: 3}
+    giftDefinition:
+      gifts:
+      - giftType: 3
+        powerupType: 0
+        boosterType: 0
+        amount: 0
+        hours: 2
+    isOnlyForEditor: 0
+    remove: 0
+    totalStarsInRoom: 27
+    editorAssetPath: 'Assets/Art_HomeDesign/Rooms/ReadingRoom '
+  - name: Veranda
+    sceneName: Room0090_Veranda_First
+    displayName: Veranda
+    description: 
+    getFromAssetBundleOnEditor: 0
+    assetBundleURLOSX: http://ggmultiplayer-backend.s3.amazonaws.com/ggmatch3/rooms/OSX/livingroom1
+    assetBundleURLAndroid: http://ggmultiplayer-backend.s3.amazonaws.com/ggmatch3/rooms/v1/livingroom1
     assetBundleURLIOS: 
     cardSprite: {fileID: 21300004, guid: 316232b234524259a100426d81daf57e, type: 3}
     giftDefinition:
@@ -32,10 +52,10 @@ MonoBehaviour:
     isOnlyForEditor: 0
     remove: 0
     totalStarsInRoom: 27
-    editorAssetPath: "Assets\x2fArt_HomeDesign\x2fRooms\x2f0090_Veranda\x2fRoom0090_Veranda.unity"
-  - name: "Room3"
-    sceneName: "Room3_Second"
-    displayName: "Bedroom"
+    editorAssetPath: Assets/Art_HomeDesign/Rooms/0090_Veranda/Room0090_Veranda.unity
+  - name: Room3
+    sceneName: Room3_Second
+    displayName: Bedroom
     description: 
     getFromAssetBundleOnEditor: 0
     assetBundleURLOSX: 
@@ -52,14 +72,14 @@ MonoBehaviour:
     isOnlyForEditor: 0
     remove: 0
     totalStarsInRoom: 44
-    editorAssetPath: "Assets\x2fArt_HomeDesign\x2fRooms\x2f0020_Bedroom\x2fRoom3.unity"
-  - name: "GirlsBedroom"
-    sceneName: "Room050_GirlsBedroom"
-    displayName: "Girls Bedroom"
+    editorAssetPath: Assets/Art_HomeDesign/Rooms/0020_Bedroom/Room3.unity
+  - name: GirlsBedroom
+    sceneName: Room050_GirlsBedroom
+    displayName: Girls Bedroom
     description: 
     getFromAssetBundleOnEditor: 0
-    assetBundleURLOSX: "http:\x2f\x2fggmultiplayer-backend.s3.amazonaws.com\x2fggmatch3\x2frooms\x2fOSX\x2flivingroom1"
-    assetBundleURLAndroid: "http:\x2f\x2fggmultiplayer-backend.s3.amazonaws.com\x2fggmatch3\x2frooms\x2fv1\x2flivingroom1"
+    assetBundleURLOSX: http://ggmultiplayer-backend.s3.amazonaws.com/ggmatch3/rooms/OSX/livingroom1
+    assetBundleURLAndroid: http://ggmultiplayer-backend.s3.amazonaws.com/ggmatch3/rooms/v1/livingroom1
     assetBundleURLIOS: 
     cardSprite: {fileID: 21300000, guid: 316232b234524259a100426d81daf57e, type: 3}
     giftDefinition:
@@ -72,10 +92,10 @@ MonoBehaviour:
     isOnlyForEditor: 0
     remove: 0
     totalStarsInRoom: 77
-    editorAssetPath: "Assets\x2fArt_HomeDesign\x2fRooms\x2f0050_BedroomGirl\x2fRoom050_GirlsBedroom.unity"
-  - name: "Attic"
-    sceneName: "Room070_Attic"
-    displayName: "Attic Room"
+    editorAssetPath: Assets/Art_HomeDesign/Rooms/0050_BedroomGirl/Room050_GirlsBedroom.unity
+  - name: Attic
+    sceneName: Room070_Attic
+    displayName: Attic Room
     description: 
     getFromAssetBundleOnEditor: 0
     assetBundleURLOSX: 
@@ -92,10 +112,10 @@ MonoBehaviour:
     isOnlyForEditor: 0
     remove: 0
     totalStarsInRoom: 54
-    editorAssetPath: "Assets\x2fArt_HomeDesign\x2fRooms\x2f0070_AtticRoom\x2fRoom070_Attic.unity"
-  - name: "Room040"
-    sceneName: "Room040"
-    displayName: "LivingRoom"
+    editorAssetPath: Assets/Art_HomeDesign/Rooms/0070_AtticRoom/Room070_Attic.unity
+  - name: Room040
+    sceneName: Room040
+    displayName: LivingRoom
     description: 
     getFromAssetBundleOnEditor: 0
     assetBundleURLOSX: 
@@ -112,10 +132,10 @@ MonoBehaviour:
     isOnlyForEditor: 0
     remove: 0
     totalStarsInRoom: 69
-    editorAssetPath: "Assets\x2fDesignHomeDemo\x2fScenes\x2fRoom040.unity"
-  - name: "0035_KitchenCountry"
-    sceneName: "0035_KitchenCountry"
-    displayName: "KitchenCountry"
+    editorAssetPath: Assets/DesignHomeDemo/Scenes/Room040.unity
+  - name: 0035_KitchenCountry
+    sceneName: 0035_KitchenCountry
+    displayName: KitchenCountry
     description: 
     getFromAssetBundleOnEditor: 0
     assetBundleURLOSX: 
@@ -132,4 +152,4 @@ MonoBehaviour:
     isOnlyForEditor: 0
     remove: 0
     totalStarsInRoom: 62
-    editorAssetPath: "Assets\x2fArt_HomeDesign\x2fRooms\x2f0035_KitchenCountry\x2f0035_KitchenCountry.unity"
+    editorAssetPath: Assets/Art_HomeDesign/Rooms/0035_KitchenCountry/0035_KitchenCountry.unity
