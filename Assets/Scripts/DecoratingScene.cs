@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -452,6 +452,9 @@ public class DecoratingScene : MonoBehaviour
         }
     }
 
+    // ===========================
+    //  HÀM Init ĐÃ ĐƯỢC CHỈNH SỬA
+    // ===========================
     public void Init(Camera mainCamera, float additionalMargin, DecorateRoomScreen roomScreen)
     {
         this.roomScreen = roomScreen;
@@ -459,9 +462,21 @@ public class DecoratingScene : MonoBehaviour
         {
             this.animationPlayer.Init(this);
         }
+
+        // reset zoom về mặc định
         this.rootTransform.localPosition = Vector3.zero;
         this.rootTransform.localScale = Vector3.one;
+
+        // scale & canh phòng theo camera (logic cũ)
         this.ScaleToFitInCamera(mainCamera, additionalMargin);
+
+        // ✨ OVERRIDE RIÊNG CHO ROOM (ví dụ ReadingRoom) NẾU BẬT CỜ
+        if (overrideOffsetAndScale && offsetTransform != null)
+        {
+            offsetTransform.localPosition = overrideOffsetPosition;
+            offsetTransform.localScale = overrideOffsetScale;
+        }
+
         Color color = this.backgroundColor;
         color.a = 1f;
         mainCamera.backgroundColor = color;
@@ -589,6 +604,16 @@ public class DecoratingScene : MonoBehaviour
 
     [SerializeField]
     public GraphicsSceneConfig config;
+
+    // 🔹 CÁC BIẾN ĐỂ OVERRIDE OFFSET & SCALE THEO TỪNG ROOM
+    [SerializeField]
+    private bool overrideOffsetAndScale = false;
+
+    [SerializeField]
+    private Vector3 overrideOffsetPosition;
+
+    [SerializeField]
+    private Vector3 overrideOffsetScale = Vector3.one;
 
     public DecoratingScene.ImagesFolderName imagesFolder;
 
