@@ -4544,8 +4544,8 @@ Transform:
   m_GameObject: {fileID: 1790424290772914440}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -18.96, y: 14.58, z: 0}
+  m_LocalScale: {x: 0.0265, y: 0.0255, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1790424290823246481}
@@ -10902,6 +10902,9 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
+  overrideOffsetAndScale: 1
+  overrideOffsetPosition: {x: -18.96, y: 14.58, z: 0}
+  overrideOffsetScale: {x: 0.027, y: 0.0255, z: 1}
   imagesFolder: 0
   backgroundColor: {r: 0, g: 0, b: 0, a: 1}
   showCollisions: 0
