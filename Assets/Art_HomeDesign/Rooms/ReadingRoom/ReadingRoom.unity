@@ -5126,7 +5126,7 @@ MonoBehaviour:
     width: 2048
     height: 1365
     objects: []
-  overrideOffsetAndScale: 0
+  overrideOffsetAndScale: 1
   overrideOffsetPosition: {x: -18.96, y: 14.58, z: 0}
   overrideOffsetScale: {x: 0.027, y: 0.0255, z: 1}
   imagesFolder: 0
