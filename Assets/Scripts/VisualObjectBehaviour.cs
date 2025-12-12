@@ -7,24 +7,21 @@ public class VisualObjectBehaviour : MonoBehaviour
 {
     public bool isPlayerControlledObject
     {
-        get
-        {
-            return this.variations.Count > 0;
-        }
+        get { return this.variations != null && this.variations.Count > 0; }
     }
 
     public bool hasDefaultVariation
     {
-        get
-        {
-            return this.defaultVariation != null;
-        }
+        get { return this.defaultVariation != null; }
     }
 
     public Vector3 iconHandlePosition
     {
         get
         {
+            if (this.visualObject == null)
+                return Vector3.zero;
+
             Vector3 vector = this.visualObject.iconHandlePosition;
             if (this.visualObjectOverride != null)
             {
@@ -62,7 +59,14 @@ public class VisualObjectBehaviour : MonoBehaviour
     {
         get
         {
-            return this.variations[this.visualObject.ownedVariationIndex];
+            if (this.visualObject == null || this.variations == null)
+                return null;
+
+            int idx = this.visualObject.ownedVariationIndex;
+            if (idx < 0 || idx >= this.variations.Count)
+                return null;
+
+            return this.variations[idx];
         }
     }
 
@@ -86,12 +90,21 @@ public class VisualObjectBehaviour : MonoBehaviour
         this.markersTransform.parent = base.transform;
         this.markersTransform.localPosition = Vector3.zero;
         this.markersTransform.localScale = Vector3.one;
+
+        if (this.visualObject == null)
+        {
+            Debug.LogError($"[VOB] visualObject is NULL in InitMarkers. GameObject={name}", this);
+            GGUtil.SetActive(this.markersTransform, false);
+            return;
+        }
+
         List<ShapeGraphShape> dashLines = this.visualObject.dashLines;
         if (dashLines == null || dashLines.Count == 0)
         {
             GGUtil.SetActive(this.markersTransform, false);
             return;
         }
+
         List<Vector2> list = new List<Vector2>();
         int depthForMarkerLines = this.visualObject.depthForMarkerLines;
         for (int i = 0; i < dashLines.Count; i++)
@@ -101,18 +114,21 @@ public class VisualObjectBehaviour : MonoBehaviour
             gameObject.transform.localPosition = Vector3.zero;
             gameObject.transform.localScale = Vector3.one;
             gameObject.transform.localRotation = Quaternion.identity;
+
             DistortedSprite component = gameObject.GetComponent<DistortedSprite>();
             GGUtil.SetActive(component, true);
             component.sortingSettings.sortingOrder = depthForMarkerLines;
+
             ShapeGraphShape shapeGraphShape = dashLines[i];
             List<Vector2> list2 = list;
             list2.Clear();
-            Transform transform = component.transform;
+
             for (int j = 0; j < shapeGraphShape.points.Count; j++)
             {
                 Vector2 item = shapeGraphShape.points[j];
                 list2.Add(item);
             }
+
             if (shapeGraphShape.GetOrientation() == ShapeGraphShape.Orientation.CW)
             {
                 component.bl = list2[0];
@@ -127,6 +143,7 @@ public class VisualObjectBehaviour : MonoBehaviour
                 component.tr = list2[1];
                 component.br = list2[0];
             }
+
             component.CreateGeometry();
             GGUtil.SetActive(gameObject, true);
         }
@@ -141,9 +158,9 @@ public class VisualObjectBehaviour : MonoBehaviour
                 parent = base.transform,
                 localPosition = Vector3.zero
             },
-            name = variation.name,
-
+            name = variation.name
         }.AddComponent<VisualObjectVariation>();
+
         visualObjectVariation.Init(this, variation);
         return visualObjectVariation;
     }
@@ -155,11 +172,19 @@ public class VisualObjectBehaviour : MonoBehaviour
         {
             return;
         }
+
+        if (this.visualObject == null)
+        {
+            Debug.LogError($"[VOB] visualObject is NULL in InitRuntimeData. GameObject={name}", this);
+            return;
+        }
+
         SceneObjectsDB.SceneObjectInfo sceneObjectInfo = this.visualObject.sceneObjectInfo;
         if (sceneObjectInfo.isVisualObjectOverriden)
         {
             this.visualObjectOverride = sceneObjectInfo.objectOverride;
         }
+
         if (Application.isEditor)
         {
             DecoratingSceneConfig.VisualObjectOverride objectOverride = roomConfig.GetObjectOverride(this.visualObject.name);
@@ -172,12 +197,31 @@ public class VisualObjectBehaviour : MonoBehaviour
 
     public void Init(RoomsBackend.RoomAccessor roomAccessor)
     {
+        if (this.visualObject == null)
+        {
+            Debug.LogError($"[VOB] visualObject is NULL in Init(roomAccessor). GameObject={name}", this);
+            return;
+        }
         this.visualObject.Init(roomAccessor);
     }
 
     public void Init(GraphicsSceneConfig.VisualObject visualObject)
     {
         this.visualObject = visualObject;
+
+        // reset lists to avoid duplicated init
+        if (this.variations == null) this.variations = new List<VisualObjectVariation>();
+        if (this.allVariations == null) this.allVariations = new List<VisualObjectVariation>();
+        this.variations.Clear();
+        this.allVariations.Clear();
+        this.defaultVariation = null;
+
+        if (visualObject == null)
+        {
+            Debug.LogError($"[VOB] Init called with NULL visualObject. GameObject={name}", this);
+            return;
+        }
+
         for (int i = 0; i < visualObject.variations.Count; i++)
         {
             GraphicsSceneConfig.Variation variation = visualObject.variations[i];
@@ -185,7 +229,8 @@ public class VisualObjectBehaviour : MonoBehaviour
             this.variations.Add(item);
             this.allVariations.Add(item);
         }
-        if (visualObject.hasDefaultVariation)
+
+        if (visualObject.hasDefaultVariation && visualObject.defaultVariation != null)
         {
             this.defaultVariation = this.CreateVariation(visualObject.defaultVariation);
             this.allVariations.Add(this.defaultVariation);
@@ -203,23 +248,49 @@ public class VisualObjectBehaviour : MonoBehaviour
             }
         }
         this.variations.Clear();
+        this.allVariations.Clear();
         VisualObjectBehaviour.Destroy(base.gameObject);
     }
 
     public void SetVisualState()
     {
-        bool isOwned = this.visualObject.isOwned;
-        if (this.defaultVariation != null && !isOwned)
+        if (this.visualObject == null)
         {
-            this.ShowVariation(this.defaultVariation);
-            return;
-        }
-        if (!isOwned)
-        {
+            Debug.LogError($"[VOB] SetVisualState: visualObject NULL on GameObject={name}", this);
             this.Hide();
             return;
         }
-        this.ShowVariationBehaviour(this.visualObject.ownedVariationIndex);
+
+        bool isOwned = this.visualObject.isOwned;
+
+        // Not owned -> show default variation if exists, else hide
+        if (!isOwned)
+        {
+            if (this.defaultVariation != null)
+            {
+                this.ShowVariation(this.defaultVariation);
+            }
+            else
+            {
+                this.Hide();
+            }
+            return;
+        }
+
+        // Owned -> show selected variation index safely
+        int idx = this.visualObject.ownedVariationIndex;
+        if (idx < 0 || idx >= this.variations.Count)
+        {
+            Debug.LogError(
+                $"[VOB] Owned but variation index out of range. obj={this.visualObject.name} idx={idx} variations={this.variations.Count} (GameObject={name})",
+                this
+            );
+            // fallback: hide to avoid crash
+            this.Hide();
+            return;
+        }
+
+        this.ShowVariationBehaviour(idx);
     }
 
     public void ShowVariationBehaviour(int variationIndex)
@@ -234,17 +305,30 @@ public class VisualObjectBehaviour : MonoBehaviour
 
     private void ShowVariation(VisualObjectVariation variation)
     {
+        if (this.allVariations == null)
+        {
+            Debug.LogError($"[VOB] allVariations NULL on GameObject={name}", this);
+            return;
+        }
+
         int variationIndex = -1;
         for (int i = 0; i < this.allVariations.Count; i++)
         {
             VisualObjectVariation visualObjectVariation = this.allVariations[i];
-            bool flag = visualObjectVariation == variation;
+            if (visualObjectVariation == null)
+            {
+                // skip null entries to avoid NullReference
+                continue;
+            }
+
+            bool flag = (visualObjectVariation == variation);
             if (flag)
             {
                 variationIndex = i;
             }
             visualObjectVariation.SetActive(flag);
         }
+
         if (this.characterBehaviour != null)
         {
             this.characterBehaviour.ShowGlobalVariation(variationIndex);
@@ -267,9 +351,7 @@ public class VisualObjectBehaviour : MonoBehaviour
     }
 
     public VisualObjectVariation defaultVariation;
-
     public List<VisualObjectVariation> variations = new List<VisualObjectVariation>();
-
     public List<VisualObjectVariation> allVariations = new List<VisualObjectVariation>();
 
     public GraphicsSceneConfig.VisualObject visualObject;
@@ -278,7 +360,6 @@ public class VisualObjectBehaviour : MonoBehaviour
     public CharacterVisualObjectBehaviour characterBehaviour;
 
     private DecoratingSceneConfig.VisualObjectOverride visualObjectOverride;
-
     private bool isMarkersCreated;
 
     [NonSerialized]
