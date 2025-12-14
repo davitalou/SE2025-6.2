@@ -22,6 +22,20 @@ public class ScrollableSelectRoomScreenButton : MonoBehaviour
 		GGUtil.ChangeText(this.titleLabel, room.displayName);
 		GGUtil.ChangeText(this.descriptionLabel, room.description);
 		GGUtil.SetSprite(this.mainImage, room.cardSprite);
+
+		// Show replay button for unlocked rooms (isOpen) except the currently active room
+		try
+		{
+			var active = ScriptableObjectSingleton<RoomsDB>.instance.ActiveRoom;
+			bool showReplay = room.isOpen && active != room;
+			if (this.replayButton != null)
+			{
+				GGUtil.SetActive(this.replayButton, showReplay);
+			}
+		}
+		catch (Exception)
+		{
+		}
 	}
 
 	public void ShowPassedAnimation()
@@ -91,6 +105,9 @@ public class ScrollableSelectRoomScreenButton : MonoBehaviour
 
 	[SerializeField]
 	private Image mainImage;
+
+	[SerializeField]
+	private GameObject replayButton;
 
 	[NonSerialized]
 	public RoomsDB.Room room;
