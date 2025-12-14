@@ -1,0 +1,48 @@
+<%
+  const OLD_USERNAME = (typeof oldUsername !== "undefined") ? oldUsername : "";
+  const ALERT = (typeof alert !== "undefined") ? alert : null;
+%>
+
+<div class="site-login mt-5 offset-lg-3 col-lg-6">
+  <div class="card shadow-lg rounded-4 border-0">
+    <div class="card-body p-4">
+      <h1 class="mb-3 text-center text-primary"><%= title %></h1>
+      <p class="text-muted text-center mb-4">Please fill out the following fields to login:</p>
+
+      <% if (ALERT) { %>
+        <div class="alert alert-<%= ALERT.type %> alert-dismissible fade show" role="alert">
+          <%= ALERT.message %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      <% } %>
+
+      <form id="login-form" action="/login" method="POST" class="needs-validation" novalidate>
+        <div class="form-group mb-3">
+          <label for="username" class="form-label fw-semibold">Username</label>
+          <input type="text"
+                 id="username"
+                 name="username"
+                 class="form-control form-control-lg"
+                 placeholder="Enter your username"
+                 value="<%= OLD_USERNAME %>"
+                 autofocus
+                 required>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="password" class="form-label fw-semibold">Password</label>
+          <input type="password"
+                 id="password"
+                 name="password"
+                 class="form-control form-control-lg"
+                 placeholder="Enter your password"
+                 required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 py-2">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

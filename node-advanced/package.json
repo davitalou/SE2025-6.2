@@ -1,0 +1,25 @@
+{
+  "name": "node-advanced",
+  "version": "1.0.0",
+  "description": "Advanced Node.js project with backend, common and console modules",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npm run start:frontend",
+    "start:frontend": "node node-frontend/server.js",
+    "start:api": "node node-backend-api/server.js",
+    "migrate": "node node-console/cli.js migrate",
+    "undo": "node node-console/cli.js undo",
+    "seed": "node node-console/cli.js seed"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "mysql2": "^3.15.3",
+    "nodemailer": "^7.0.10",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.3"
+  }
+}

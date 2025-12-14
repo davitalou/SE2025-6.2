@@ -1,0 +1,31 @@
+{
+  "name": "node-frontend",
+  "version": "1.0.0",
+  "description": "Frontend server for Node Advanced (EJS views calling API)",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "express",
+    "sequelize",
+    "ejs",
+    "backend"
+  ],
+  "author": "Kieu Duy Hoang",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
+    "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

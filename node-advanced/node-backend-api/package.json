@@ -1,0 +1,34 @@
+{
+  "name": "node-backend-api",
+  "version": "1.0.0",
+  "description": "API server for Node Advanced (converted from Yii2 backend, JSON only)",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "migrate": "node ../node-console/cli.js migrate",
+    "undo": "node ../node-console/cli.js undo",
+    "seed": "node ../node-console/cli.js seed"
+  },
+  "keywords": [
+    "express",
+    "sequelize",
+    "ejs",
+    "backend"
+  ],
+  "author": "Kieu Duy Hoang",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.15.3",
+    "nodemailer": "^7.0.10",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
