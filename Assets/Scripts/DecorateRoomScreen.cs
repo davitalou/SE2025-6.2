@@ -251,6 +251,24 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         }
         this.visualItemsPool.HideNotUsed();
         GGUtil.SetActive(this.controlWidgets, true);
+        // start recording a new replay session for this room only if it's completed (captures initial state)
+        try
+        {
+            var replay = SingletonInit<ReplayManager>.instance;
+            if (replay != null && _003C_003Ec__DisplayClass58_.scene.roomBackend.isPassed)
+            {
+                UnityEngine.Debug.Log($"Starting replay session for completed room: {_003C_003Ec__DisplayClass58_.scene.roomName}");
+                SingletonInit<ReplayManager>.instance.StartSession(_003C_003Ec__DisplayClass58_.scene.roomName, _003C_003Ec__DisplayClass58_.scene);
+            }
+            else if (replay != null)
+            {
+                UnityEngine.Debug.Log($"Skipping replay session for incomplete room: {_003C_003Ec__DisplayClass58_.scene.roomName}");
+            }
+        }
+        catch (Exception ex)
+        {
+            UnityEngine.Debug.LogException(ex);
+        }
         this.currencyPanel.Show();
         Match3StagesDB.Stage currentStage = Match3StagesDB.instance.currentStage;
         for (int k = 0; k < this.uiItemSetups.Count; k++)
@@ -415,6 +433,33 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         }
         if (isPurchased)
         {
+            // record purchase action for replay
+            try
+            {
+                var rm = SingletonInit<ReplayManager>.instance;
+                UnityEngine.Debug.Log($"Recording purchase: rm={rm}, scene={this.scene}");
+                if (rm != null)
+                {
+                    ReplayAction act = new ReplayAction();
+                    act.type = "buy";
+                    act.target = visualObjectBehaviour.name.ToLower();
+                    act.time = Time.realtimeSinceStartup;
+                    if (this.scene != null)
+                    {
+                        rm.RecordAction(this.scene.roomName, act);
+                        UnityEngine.Debug.Log($"Purchase recorded for {this.scene.roomName}");
+                    }
+                    else
+                    {
+                        UnityEngine.Debug.Log("this.scene is null, cannot record purchase");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogException(ex);
+            }
+
             new List<ChangeAnimationArguments>();
             DecoratingScene.GroupDefinition groupForIndex = this.scene.GetGroupForIndex(visualObject.sceneObjectInfo.groupIndex);
             if (groupForIndex != null && this.scene.IsAllElementsPickedUpInGroup(visualObject.sceneObjectInfo.groupIndex) && groupForIndex.toSayAfterGroupCompletes.Count > 0)
@@ -449,6 +494,26 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                 this.animationEnumerator.MoveNext();
                 this.ShowConfettiParticle();
                 return;
+            }
+        }
+        else if (variationPanel.isVariationChanged)
+        {
+            try
+            {
+                var rm2 = SingletonInit<ReplayManager>.instance;
+                if (rm2 != null && this.scene != null)
+                {
+                    ReplayAction act2 = new ReplayAction();
+                    act2.type = "change_variation";
+                    act2.target = visualObjectBehaviour.name.ToLower();
+                    act2.variationIndex = visualObjectBehaviour.visualObject.ownedVariationIndex;
+                    act2.time = Time.realtimeSinceStartup;
+                    rm2.RecordAction(this.scene.roomName, act2);
+                }
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogException(ex);
             }
         }
         this.InitScene(this.scene, false);
@@ -783,22 +848,36 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         SingleCurrencyPrice price = uiItem.visualObjectBehaviour.visualObject.sceneObjectInfo.price;
         WalletManager walletManager = GGPlayerSettings.instance.walletManager;
         GGUtil.SetActive(this.confirmPurchasePanel, false);
-        UnityEngine.Debug.LogFormat("Price is {0} {1}", new object[]
-        {
-            price.cost,
-            price.currency
-        });
-        if ((!Application.isEditor || !this.noCoinsForPurchase) && !walletManager.CanBuyItemWithPrice(price))
-        {
-            this.ButtonCallback_PlayButtonClick();
-            return;
-        }
+        // Removed currency check to allow unlimited purchases
+        // if ((!Application.isEditor || !this.noCoinsForPurchase) && !walletManager.CanBuyItemWithPrice(price))
+        // {
+        //     this.ButtonCallback_PlayButtonClick();
+        //     return;
+        // }
         uiItem.visualObjectBehaviour.visualObject.isOwned = true;
         this.ShowVariations(uiItem, new VariationPanel.InitParams
         {
             isPurchased = true
         });
-        walletManager.BuyItem(price);
+        // record purchase action for replay (also record here in case purchase flow bypasses VariationPanel)
+        try
+        {
+            var rm = SingletonInit<ReplayManager>.instance;
+            if (rm != null)
+            {
+                ReplayAction act = new ReplayAction();
+                act.type = "buy";
+                act.target = uiItem.visualObjectBehaviour.name.ToLower();
+                act.time = Time.realtimeSinceStartup;
+                rm.RecordAction(this.scene.roomName, act);
+            }
+        }
+        catch (Exception ex)
+        {
+            UnityEngine.Debug.LogException(ex);
+        }
+        // Removed actual purchase to keep unlimited currency
+        // walletManager.BuyItem(price);
         this.currencyPanel.SetLabels();
         Analytics.RoomItemBoughtEvent roomItemBoughtEvent = new Analytics.RoomItemBoughtEvent();
         roomItemBoughtEvent.price = price;
@@ -845,6 +924,194 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         }
         InGameSettingsScreen object2 = instance.GetObject<InGameSettingsScreen>();
         instance.Push(object2, false);
+    }
+
+    public void ButtonCallback_OnReplay()
+    {
+        UnityEngine.Debug.Log("ButtonCallback_OnReplay called");
+        GGSoundSystem.Play(GGSoundSystem.SFXType.ButtonPress);
+        try
+        {
+            var rm = SingletonInit<ReplayManager>.instance;
+            UnityEngine.Debug.Log($"ReplayManager instance: {rm}, scene: {this.scene}");
+            if (rm == null || this.scene == null)
+            {
+                UnityEngine.Debug.Log("ReplayManager or scene is null - returning");
+                return;
+            }
+            var rr = rm.GetReplay(this.scene.roomName);
+            if (rr == null || rr.actions == null)
+            {
+                UnityEngine.Debug.Log($"No replay available for room {this.scene.roomName}: rr={rr}, actions={rr?.actions}");
+                if (this.messagePanel != null)
+                {
+                    this.messagePanel.Play("No replay available for this room");
+                }
+                else
+                {
+                    Dialog.instance.Show("No replay available for this room", "OK", null);
+                }
+                return;
+            }
+            // For completed rooms with no recorded actions, create fake buy actions for all owned decor
+            if (rr.actions.Count == 0 && this.scene.roomBackend.isPassed)
+            {
+                // Reset initial states to empty for full replay from start
+                rr.initialStates.Clear();
+                // Set all decor to not owned in initial states
+                foreach (var vob in this.scene.visualObjectBehaviours)
+                {
+                    var initialState = new InitialState();
+                    initialState.objectName = vob.name.ToLower();
+                    initialState.isOwned = false; // Start with no decor owned
+                    initialState.variationIndex = 0;
+                    rr.initialStates.Add(initialState);
+                }
+                // Collect owned decor and reverse the order for reverse replay
+                List<VisualObjectBehaviour> ownedDecor = new List<VisualObjectBehaviour>();
+                foreach (var vob in this.scene.visualObjectBehaviours)
+                {
+                    if (vob.visualObject.isOwned)
+                    {
+                        ownedDecor.Add(vob);
+                    }
+                }
+                ownedDecor.Reverse(); // Reverse to play from last to first
+                int index = 0;
+                foreach (var vob in ownedDecor)
+                {
+                    var action = new ReplayAction();
+                    action.type = "buy";
+                    action.target = vob.visualObject.name;
+                    action.variationIndex = vob.visualObject.ownedVariationIndex;
+                    action.time = index * 2.0f; // 2 seconds delay between each decor placement
+                    rr.actions.Add(action);
+                    index++;
+                }
+            }
+            if (rr.actions.Count == 0)
+            {
+                UnityEngine.Debug.Log($"No replay available for room {this.scene.roomName}: no actions after fake generation");
+                if (this.messagePanel != null)
+                {
+                    this.messagePanel.Play("No replay available for this room");
+                }
+                else
+                {
+                    Dialog.instance.Show("No replay available for this room", "OK", null);
+                }
+                return;
+            }
+            StartCoroutine(this.DoReplay(rr));
+        }
+        catch (Exception ex)
+        {
+            UnityEngine.Debug.LogException(ex);
+        }
+    }
+
+    // public void ButtonCallback_OnResetData()
+    // {
+    //     UnityEngine.Debug.Log("ButtonCallback_OnResetData called");
+    //     GGSoundSystem.Play(GGSoundSystem.SFXType.ButtonPress);
+    //     try
+    //     {
+    //         // Confirm with user before deleting
+    //         Dialog.instance.Show("Are you sure you want to delete all game data and restart?", "Yes", "No", delegate(bool yes)
+    //         {
+    //             if (yes)
+    //             {
+    //                 PlayerPrefs.DeleteAll();
+    //                 UnityEngine.Debug.Log("All PlayerPrefs deleted. Restarting scene...");
+    //                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //             }
+    //         });
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         UnityEngine.Debug.LogException(ex);
+    //     }
+    // }
+
+    private IEnumerator DoReplay(RoomReplay rr)
+    {
+        if (rr == null) yield break;
+        UnityEngine.Debug.Log("DoReplay started with " + rr.actions.Count + " actions");
+        // hide controls while replaying
+        GGUtil.SetActive(this.controlWidgets, false);
+        // reset to initial states
+        try
+        {
+            for (int i = 0; i < rr.initialStates.Count; i++)
+            {
+                var st = rr.initialStates[i];
+                var vb = this.scene.GetBehaviour(st.objectName);
+                UnityEngine.Debug.Log($"Reset object '{st.objectName}': found={vb != null}, owned={st.isOwned}, variation={st.variationIndex}");
+                if (vb != null)
+                {
+                    vb.visualObject.isOwned = st.isOwned;
+                    vb.visualObject.ownedVariationIndex = st.variationIndex;
+                    vb.SetVisualState();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            UnityEngine.Debug.LogException(ex);
+        }
+        yield return null;
+        float prevTime = rr.actions.Count > 0 ? rr.actions[0].time : Time.realtimeSinceStartup;
+        for (int j = 0; j < rr.actions.Count; j++)
+        {
+            var act = rr.actions[j];
+            float delay = 2.0f; // increased delay for better visibility
+            try
+            {
+                if (act.time > 0f)
+                {
+                    delay = Mathf.Max(1.0f, act.time - prevTime); // minimum 1 second delay
+                    prevTime = act.time;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            // apply action
+            try
+            {
+                UnityEngine.Debug.Log($"Applying action: type={act.type}, target={act.target}, variation={act.variationIndex}, delay={delay}s");
+                var vb2 = this.scene.GetBehaviour(act.target);
+                UnityEngine.Debug.Log($"  Found object: {vb2 != null}");
+                if (vb2 != null)
+                {
+                    if (act.type == "buy")
+                    {
+                        vb2.visualObject.isOwned = true;
+                        vb2.SetVisualState();
+                        this.scene.AnimationForVisualBehaviour(vb2); // trigger animation like real purchase
+                        this.visualObjectParticles.CreateParticles(VisualObjectParticles.PositionType.BuySuccess, this.scene.rootTransform.gameObject, vb2);
+                        GGSoundSystem.Play(GGSoundSystem.SFXType.ButtonConfirm);
+                    }
+                    else if (act.type == "change_variation")
+                    {
+                        vb2.visualObject.ownedVariationIndex = act.variationIndex;
+                        vb2.SetVisualState();
+                        this.scene.AnimationForVisualBehaviour(vb2); // trigger animation like real variation change
+                        this.visualObjectParticles.CreateParticles(VisualObjectParticles.PositionType.ChangeSuccess, this.scene.rootTransform.gameObject, vb2);
+                        GGSoundSystem.Play(GGSoundSystem.SFXType.ButtonConfirm);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogException(ex);
+            }
+            yield return new WaitForSeconds(delay);
+        }
+        // done
+        UnityEngine.Debug.Log("Replay finished");
+        GGUtil.SetActive(this.controlWidgets, true);
+        yield break;
     }
 
     public override void OnGoBack(NavigationManager nav)
@@ -975,7 +1242,8 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         PlayButton,
         SettingsButton,
         CoinsBar,
-        HeartsBar
+        HeartsBar,
+        ReplayButton
     }
 
     [Serializable]
