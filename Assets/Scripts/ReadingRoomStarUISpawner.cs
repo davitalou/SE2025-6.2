@@ -14,21 +14,38 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
     public List<VisualObjectBehaviour> targets = new();
 
     [Header("Star Visual")]
-    public float starScale = 1f;             // nếu star nhỏ quá, tăng lên 1.5 / 2
+    public float starScale = 1f;              // nếu star nhỏ quá, tăng lên 1.5 / 2
     public Vector2 screenOffset = new(0, 20); // đẩy sao lên chút cho dễ thấy
 
     private readonly List<GameObject> spawned = new();
+    private Coroutine spawnRoutine;
 
-    private void Start()
+    private void OnEnable()
     {
-        StartCoroutine(SpawnNextFrame());
+        // Bật lại canvas (chỉ bật, không tắt ngược lại trong OnDisable của canvas)
+        if (markersCanvas != null)
+            markersCanvas.gameObject.SetActive(true);
+
+        // Tránh chạy chồng coroutine
+        if (spawnRoutine != null) StopCoroutine(spawnRoutine);
+        spawnRoutine = StartCoroutine(SpawnNextFrame());
+    }
+
+    private void OnDisable()
+    {
+        // Clear star để không bị "đọng" khi chuyển UI/scene
+        ClearStars();
+
+        // Nếu bạn muốn về Home là ẩn hết star UI:
+        if (markersCanvas != null)
+            markersCanvas.gameObject.SetActive(false);
     }
 
     private IEnumerator SpawnNextFrame()
     {
-        // đợi 1 frame để camera/canvas/scene setup xong
-        yield return null;
+        yield return null; // đợi 1 frame để camera/canvas/scene setup xong
         Spawn();
+        spawnRoutine = null;
     }
 
     public void Spawn()
@@ -45,7 +62,6 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
             return;
         }
 
-        // Parent UI để đặt sao
         RectTransform parentRect = markersRoot != null
             ? markersRoot
             : markersCanvas.GetComponent<RectTransform>();
@@ -56,7 +72,7 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
             return;
         }
 
-        // Camera dùng để WorldToScreen (phòng bạn là 2D/3D đều dùng được)
+        // Camera dùng để WorldToScreen (camera nhìn room)
         Camera cam = Camera.main;
         if (cam == null)
         {
@@ -74,8 +90,7 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
         }
 
         // ===== Clear old stars =====
-        foreach (var s in spawned) if (s) Destroy(s);
-        spawned.Clear();
+        ClearStars();
 
         // ===== Spawn stars =====
         for (int i = 0; i < targets.Count; i++)
@@ -87,8 +102,12 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
                 continue;
             }
 
-            // 1) Lấy vị trí world để đặt sao (không dùng iconHandlePosition để tránh null/phụ thuộc hệ khác)
+            // 1) Lấy vị trí world để đặt sao
             Vector3 worldPos = GetWorldAnchor(v);
+
+            // FIX quan trọng: nếu anchor lỡ có z lệch (dẫn tới z < 0), ép z theo object
+            // -> tránh trường hợp riêng table bị "behind camera"
+            worldPos.z = v.transform.position.z;
 
             // 2) Ẩn đồ: chỉ tắt renderer, KHÔNG tắt GameObject
             HideVisual(v);
@@ -97,10 +116,10 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
             Vector3 screenPos3 = cam.WorldToScreenPoint(worldPos);
             Vector2 screenPos = new Vector2(screenPos3.x, screenPos3.y) + screenOffset;
 
-            // nếu object nằm sau camera thì skip
+            // nếu object nằm sau camera thì skip (log rõ để debug)
             if (screenPos3.z < 0)
             {
-                Debug.LogWarning($"[ReadingRoomStarUISpawner] {v.name} is behind camera -> skip");
+                Debug.LogWarning($"[ReadingRoomStarUISpawner] SKIP {v.name} behind camera. z={screenPos3.z}, world={worldPos}");
                 continue;
             }
 
@@ -122,6 +141,11 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
                 Destroy(starGO);
                 continue;
             }
+
+            // (đảm bảo anchor/pivot center, phòng trường hợp prefab bị đổi sau này)
+            starRT.anchorMin = new Vector2(0.5f, 0.5f);
+            starRT.anchorMax = new Vector2(0.5f, 0.5f);
+            starRT.pivot = new Vector2(0.5f, 0.5f);
 
             starRT.anchoredPosition = localPoint;
             starRT.localScale = Vector3.one * starScale;
@@ -147,6 +171,15 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
         Debug.Log($"[ReadingRoomStarUISpawner] Spawned {spawned.Count} StarUI");
     }
 
+    private void ClearStars()
+    {
+        for (int i = 0; i < spawned.Count; i++)
+        {
+            if (spawned[i] != null) Destroy(spawned[i]);
+        }
+        spawned.Clear();
+    }
+
     private void HideVisual(VisualObjectBehaviour v)
     {
         var renderers = v.GetComponentsInChildren<SpriteRenderer>(true);
@@ -155,8 +188,10 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
 
     private Vector3 GetWorldAnchor(VisualObjectBehaviour v)
     {
+        // Ưu tiên UIAnchor nếu có
         if (v.uiAnchor != null) return v.uiAnchor.position;
+
+        // fallback
         return v.transform.position;
     }
-
 }
