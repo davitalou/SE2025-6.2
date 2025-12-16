@@ -822,6 +822,7 @@ Transform:
   m_Children:
   - {fileID: 1917090339}
   - {fileID: 1520849250}
+  - {fileID: 1299684758}
   m_Father: {fileID: 1790424290823246585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &452293531
@@ -836,6 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualObjectBehaviour
+  uiAnchor: {fileID: 1299684758}
   defaultVariation: {fileID: 1917090338}
   variations:
   - {fileID: 1917090338}
@@ -1189,6 +1191,7 @@ Transform:
   m_Children:
   - {fileID: 1254948087}
   - {fileID: 2109264120}
+  - {fileID: 1889634115}
   m_Father: {fileID: 1790424290823246585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &568174448
@@ -1261,6 +1264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualObjectBehaviour
+  uiAnchor: {fileID: 1889634115}
   defaultVariation: {fileID: 1254948088}
   variations:
   - {fileID: 1254948088}
@@ -1498,6 +1502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualObjectBehaviour
+  uiAnchor: {fileID: 0}
   defaultVariation: {fileID: 0}
   variations: []
   allVariations: []
@@ -1755,6 +1760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualObjectBehaviour
+  uiAnchor: {fileID: 0}
   defaultVariation: {fileID: 0}
   variations: []
   allVariations: []
@@ -2785,6 +2791,7 @@ Transform:
   m_Children:
   - {fileID: 1179503530}
   - {fileID: 1790976910}
+  - {fileID: 1818508369}
   m_Father: {fileID: 1790424290823246585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1264720801
@@ -2799,6 +2806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualObjectBehaviour
+  uiAnchor: {fileID: 1818508369}
   defaultVariation: {fileID: 1179503529}
   variations:
   - {fileID: 1179503529}
@@ -2997,6 +3005,37 @@ MonoBehaviour:
     initialDepth: 0
   pivotTransform: {fileID: 1768063851}
   spriteTransform: {fileID: 1572436902}
+--- !u!1 &1299684757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1299684758}
+  m_Layer: 0
+  m_Name: UIAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1299684758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299684757}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 367, y: -1068, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 452293530}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1368173684
 GameObject:
   m_ObjectHideFlags: 0
@@ -3906,6 +3945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualObjectBehaviour
+  uiAnchor: {fileID: 0}
   defaultVariation: {fileID: 0}
   variations: []
   allVariations: []
@@ -3982,6 +4022,37 @@ Transform:
   m_Children:
   - {fileID: 1572436902}
   m_Father: {fileID: 1288719172}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1789442312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1789442313}
+  m_Layer: 0
+  m_Name: UIAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1789442313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789442312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 674, y: -810, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2003109172}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1790976909
 GameObject:
@@ -4122,6 +4193,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1818508368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1818508369}
+  m_Layer: 0
+  m_Name: UIAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1818508369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818508368}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 129, y: -917, z: -8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1264720800}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1875804902
 GameObject:
   m_ObjectHideFlags: 0
@@ -4152,6 +4254,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1889634114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1889634115}
+  m_Layer: 0
+  m_Name: UIAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1889634115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889634114}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -120, y: -809, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 568174447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1908974928
 GameObject:
@@ -4417,6 +4550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
   defaultVariation: {fileID: 0}
   variations: []
   allVariations:
@@ -4520,6 +4654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
   defaultVariation: {fileID: 0}
   variations: []
   allVariations:
@@ -4639,6 +4774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualObjectBehaviour
+  uiAnchor: {fileID: 0}
   defaultVariation: {fileID: 0}
   variations: []
   allVariations: []
@@ -4717,6 +4853,7 @@ Transform:
   m_Children:
   - {fileID: 1628913384}
   - {fileID: 1935394361}
+  - {fileID: 1789442313}
   m_Father: {fileID: 1790424290823246585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2003109173
@@ -4789,6 +4926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualObjectBehaviour
+  uiAnchor: {fileID: 1789442313}
   defaultVariation: {fileID: 1628913385}
   variations:
   - {fileID: 1628913385}
@@ -4946,6 +5084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualObjectBehaviour
+  uiAnchor: {fileID: 0}
   defaultVariation: {fileID: 0}
   variations: []
   allVariations: []
@@ -5275,6 +5414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
   defaultVariation: {fileID: 1790424292668741073}
   variations: []
   allVariations:
