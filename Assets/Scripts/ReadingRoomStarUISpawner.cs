@@ -155,27 +155,8 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
 
     private Vector3 GetWorldAnchor(VisualObjectBehaviour v)
     {
-        // lấy sprite lớn nhất làm anchor cho đúng “trung tâm đồ”
-        var sprites = v.GetComponentsInChildren<SpriteRenderer>(true);
-        if (sprites != null && sprites.Length > 0)
-        {
-            SpriteRenderer best = sprites[0];
-            float bestArea = best.bounds.size.x * best.bounds.size.y;
-
-            for (int i = 1; i < sprites.Length; i++)
-            {
-                var s = sprites[i];
-                float area = s.bounds.size.x * s.bounds.size.y;
-                if (area > bestArea)
-                {
-                    best = s;
-                    bestArea = area;
-                }
-            }
-            return best.bounds.center;
-        }
-
-        // fallback
+        if (v.uiAnchor != null) return v.uiAnchor.position;
         return v.transform.position;
     }
+
 }

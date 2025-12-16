@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class VisualObjectBehaviour : MonoBehaviour
 {
+    public Transform uiAnchor;
+
     public bool isPlayerControlledObject
     {
         get { return this.variations != null && this.variations.Count > 0; }
