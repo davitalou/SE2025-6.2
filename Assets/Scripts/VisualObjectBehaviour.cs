@@ -6,6 +6,7 @@ using UnityEngine;
 public class VisualObjectBehaviour : MonoBehaviour
 {
     public Transform uiAnchor;
+    public string objectId;
 
     public bool isPlayerControlledObject
     {

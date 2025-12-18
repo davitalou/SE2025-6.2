@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,11 +15,26 @@ public class Match3GameStarter : MonoBehaviour
 
 	public Match3Game CreateGame()
 	{
-		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.gamePrefab.gameObject, this.parent);
+		GameObject gameObject =
+			Instantiate(this.gamePrefab.gameObject, this.parent);
+
 		this.createdGameObjects.Add(gameObject);
 		gameObject.SetActive(true);
-		return gameObject.GetComponent<Match3Game>();
+
+		Match3Game game = gameObject.GetComponent<Match3Game>();
+
+		// Gắn listener để bắt win/lose
+		RoomMatch3Listener listener = gameObject.AddComponent<RoomMatch3Listener>();
+
+		if (game != null && game.initParams != null)
+		{
+			game.initParams.listener = listener;
+		}
+
+		return game;
 	}
+
+
 
 	public void GoToMainScene()
 	{

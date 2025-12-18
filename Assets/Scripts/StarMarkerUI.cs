@@ -1,19 +1,25 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class StarMarkerUI : MonoBehaviour
 {
     public VisualObjectBehaviour target;
 
-    void Awake()
+    private Button _btn;
+
+    private void Awake()
     {
-        var btn = GetComponent<Button>();
-        if (btn != null)
-            btn.onClick.AddListener(OnClick);
+        _btn = GetComponent<Button>();
+        if (_btn == null) Debug.LogError("[StarMarkerUI] Missing Button!");
+        else _btn.onClick.AddListener(OnClick);
     }
 
-    void OnClick()
+    public void OnClick()
     {
-        Debug.Log("STAR CLICKED: " + (target ? target.name : "NO TARGET"));
+        Debug.Log($"[StarMarkerUI] Clicked star, target = {(target ? target.objectId : "NULL")}");
+        if (target == null) return;
+
+        PendingReward.objectId = target.objectId;
+        
     }
 }

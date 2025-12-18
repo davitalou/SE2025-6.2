@@ -72,17 +72,13 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
             return;
         }
 
-        // Camera dùng để WorldToScreen (camera nhìn room)
         Camera cam = Camera.main;
         if (cam == null)
         {
-            Debug.LogError("[ReadingRoomStarUISpawner] Camera.main is NULL. Scene phải có 1 Camera tag MainCamera.");
+            Debug.LogError("[ReadingRoomStarUISpawner] Camera.main is NULL.");
             return;
         }
 
-        // Camera dùng cho RectTransformUtility:
-        // - Overlay => truyền null
-        // - ScreenSpaceCamera / WorldSpace => truyền worldCamera
         Camera uiCam = null;
         if (markersCanvas.renderMode != RenderMode.ScreenSpaceOverlay)
         {
@@ -102,74 +98,72 @@ public class ReadingRoomStarUISpawner : MonoBehaviour
                 continue;
             }
 
+
+            if (!string.IsNullOrEmpty(v.objectId) && RoomProgress.IsUnlocked(v.objectId))
+            {
+                continue;
+            }
+
             // 1) Lấy vị trí world để đặt sao
             Vector3 worldPos = GetWorldAnchor(v);
-
-            // FIX quan trọng: nếu anchor lỡ có z lệch (dẫn tới z < 0), ép z theo object
-            // -> tránh trường hợp riêng table bị "behind camera"
             worldPos.z = v.transform.position.z;
 
-            // 2) Ẩn đồ: chỉ tắt renderer, KHÔNG tắt GameObject
+            // 2) Ẩn đồ
             HideVisual(v);
 
-            // 3) Convert world -> screen
+            // 3) World -> Screen
             Vector3 screenPos3 = cam.WorldToScreenPoint(worldPos);
             Vector2 screenPos = new Vector2(screenPos3.x, screenPos3.y) + screenOffset;
 
-            // nếu object nằm sau camera thì skip (log rõ để debug)
             if (screenPos3.z < 0)
             {
-                Debug.LogWarning($"[ReadingRoomStarUISpawner] SKIP {v.name} behind camera. z={screenPos3.z}, world={worldPos}");
+                Debug.LogWarning($"[ReadingRoomStarUISpawner] SKIP {v.name} behind camera");
                 continue;
             }
 
-            // 4) Screen -> local (Canvas)
-            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRect, screenPos, uiCam, out Vector2 localPoint))
+            // 4) Screen -> local canvas
+            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                parentRect, screenPos, uiCam, out Vector2 localPoint))
             {
-                Debug.LogWarning($"[ReadingRoomStarUISpawner] Convert screen->local failed for {v.name}");
                 continue;
             }
 
-            // 5) Instantiate UI star
+            // 5) Spawn Star UI
             GameObject starGO = Instantiate(starUIPrefab, parentRect);
             starGO.name = $"StarUI_{v.name}";
 
             RectTransform starRT = starGO.GetComponent<RectTransform>();
             if (starRT == null)
             {
-                Debug.LogError("[ReadingRoomStarUISpawner] StarUI prefab thiếu RectTransform (phải là UI object).");
                 Destroy(starGO);
                 continue;
             }
 
-            // (đảm bảo anchor/pivot center, phòng trường hợp prefab bị đổi sau này)
             starRT.anchorMin = new Vector2(0.5f, 0.5f);
             starRT.anchorMax = new Vector2(0.5f, 0.5f);
             starRT.pivot = new Vector2(0.5f, 0.5f);
-
             starRT.anchoredPosition = localPoint;
             starRT.localScale = Vector3.one * starScale;
 
-            // đảm bảo Image không bị alpha = 0
             var img = starGO.GetComponent<Image>();
             if (img != null)
             {
                 Color c = img.color;
-                if (c.a < 1f) { c.a = 1f; img.color = c; }
+                c.a = 1f;
+                img.color = c;
                 img.raycastTarget = true;
-                img.enabled = true;
             }
 
-            // gán target cho click
             var marker = starGO.GetComponent<StarMarkerUI>();
-            if (marker != null) marker.target = v;
-            else Debug.LogWarning("[ReadingRoomStarUISpawner] StarUI prefab chưa có StarMarkerUI.");
+            if (marker != null)
+                marker.target = v;
 
             spawned.Add(starGO);
         }
 
         Debug.Log($"[ReadingRoomStarUISpawner] Spawned {spawned.Count} StarUI");
     }
+
 
     private void ClearStars()
     {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -787,6 +787,14 @@ public class Match3Game : MonoBehaviour
         this.board.isInteractionSuspended = false;
         this.input.SetCamera(mainCamera);
         this.initParams = initParams;
+        // --- Hook listener để bắt win/lose cho việc unlock room item ---
+        if (this.initParams != null)
+        {
+            var listener = this.GetComponent<RoomMatch3Listener>();
+            if (listener == null) listener = this.gameObject.AddComponent<RoomMatch3Listener>();
+            this.initParams.listener = listener;
+        }
+
         this.gameScreen = gameScreen;
         this.tutorialHighlighter.Init(gameScreen);
         int num = (int)DateTime.Now.Ticks;
