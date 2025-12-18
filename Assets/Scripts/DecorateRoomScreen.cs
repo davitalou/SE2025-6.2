@@ -251,17 +251,67 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         }
         this.visualItemsPool.HideNotUsed();
         GGUtil.SetActive(this.controlWidgets, true);
+        // start recording a new replay session for this room only if it's completed (captures initial state)
+        try
+        {
+            var replay = SingletonInit<ReplayManager>.instance;
+            if (replay != null && _003C_003Ec__DisplayClass58_.scene.roomBackend.isPassed)
+            {
+                UnityEngine.Debug.Log($"Starting replay session for completed room: {_003C_003Ec__DisplayClass58_.scene.roomName}");
+                SingletonInit<ReplayManager>.instance.StartSession(_003C_003Ec__DisplayClass58_.scene.roomName, _003C_003Ec__DisplayClass58_.scene);
+            }
+            else if (replay != null)
+            {
+                UnityEngine.Debug.Log($"Skipping replay session for incomplete room: {_003C_003Ec__DisplayClass58_.scene.roomName}");
+            }
+        }
+        catch (Exception ex)
+        {
+            UnityEngine.Debug.LogException(ex);
+        }
         this.currencyPanel.Show();
         Match3StagesDB.Stage currentStage = Match3StagesDB.instance.currentStage;
+        UnityEngine.Debug.Log($"uiItemSetups count: {this.uiItemSetups.Count}");
         for (int k = 0; k < this.uiItemSetups.Count; k++)
         {
             DecorateRoomScreen.UIItemSetup uiitemSetup = this.uiItemSetups[k];
+            UnityEngine.Debug.Log($"Checking uiitemSetup {k}: name={uiitemSetup.name}, widget={uiitemSetup.widget}");
             bool active = !currentStage.hideUIElements;
             if (Application.isEditor && uiitemSetup.name == DecorateRoomScreen.UIItemName.SettingsButton)
             {
                 active = true;
             }
+            // Only show Replay button for fully completed rooms
+            if (uiitemSetup.name == DecorateRoomScreen.UIItemName.ReplayButton)
+            {
+                try
+                {
+                    active = (scene != null && scene.roomBackend != null && scene.roomBackend.isPassed);
+                    UnityEngine.Debug.Log($"Replay button active: {active}, isPassed: {scene?.roomBackend?.isPassed}, roomName: {scene?.roomName}");
+                }
+                catch (Exception ex)
+                {
+                    active = false;
+                    UnityEngine.Debug.LogException(ex);
+                }
+            }
             GGUtil.SetActive(uiitemSetup.widget, active);
+        }
+        // Ensure skip button is hidden by default (only visible during replay)
+        if (this.skipReplayButton == null)
+        {
+            this.skipReplayButton = UnityEngine.GameObject.Find("SkipReplayButton")?.GetComponent<Button>();
+            UnityEngine.Debug.Log($"Found skipReplayButton: {this.skipReplayButton}");
+        }
+        UnityEngine.Debug.Log($"Setting skip button active=false, skipReplayButton={this.skipReplayButton}");
+        if (this.skipReplayButton != null)
+        {
+            GGUtil.SetActive(this.skipReplayButton.gameObject, false);
+            UnityEngine.Debug.Log("Skip button set to false");
+        }
+        else
+        {
+            UnityEngine.Debug.Log("skipReplayButton is null");
         }
         GGUtil.Hide(this.levelDifficultyWidgets);
         if (currentStage.difficulty == Match3StagesDB.Stage.Difficulty.Normal)
@@ -306,6 +356,11 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                 return;
             }
             _003C_003Ec__DisplayClass58_.scene.AnimateCharacterAlphaTo(1f);
+        }
+        // Final safety: ensure skip button is hidden unless replaying
+        if (this.skipReplayButton != null && !this.isReplaying)
+        {
+            GGUtil.SetActive(this.skipReplayButton.gameObject, false);
         }
     }
 
@@ -415,6 +470,33 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         }
         if (isPurchased)
         {
+            // record purchase action for replay
+            try
+            {
+                var rm = SingletonInit<ReplayManager>.instance;
+                UnityEngine.Debug.Log($"Recording purchase: rm={rm}, scene={this.scene}");
+                if (rm != null)
+                {
+                    ReplayAction act = new ReplayAction();
+                    act.type = "buy";
+                    act.target = visualObjectBehaviour.name.ToLower();
+                    act.time = Time.realtimeSinceStartup;
+                    if (this.scene != null)
+                    {
+                        rm.RecordAction(this.scene.roomName, act);
+                        UnityEngine.Debug.Log($"Purchase recorded for {this.scene.roomName}");
+                    }
+                    else
+                    {
+                        UnityEngine.Debug.Log("this.scene is null, cannot record purchase");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogException(ex);
+            }
+
             new List<ChangeAnimationArguments>();
             DecoratingScene.GroupDefinition groupForIndex = this.scene.GetGroupForIndex(visualObject.sceneObjectInfo.groupIndex);
             if (groupForIndex != null && this.scene.IsAllElementsPickedUpInGroup(visualObject.sceneObjectInfo.groupIndex) && groupForIndex.toSayAfterGroupCompletes.Count > 0)
@@ -449,6 +531,26 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                 this.animationEnumerator.MoveNext();
                 this.ShowConfettiParticle();
                 return;
+            }
+        }
+        else if (variationPanel.isVariationChanged)
+        {
+            try
+            {
+                var rm2 = SingletonInit<ReplayManager>.instance;
+                if (rm2 != null && this.scene != null)
+                {
+                    ReplayAction act2 = new ReplayAction();
+                    act2.type = "change_variation";
+                    act2.target = visualObjectBehaviour.name.ToLower();
+                    act2.variationIndex = visualObjectBehaviour.visualObject.ownedVariationIndex;
+                    act2.time = Time.realtimeSinceStartup;
+                    rm2.RecordAction(this.scene.roomName, act2);
+                }
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogException(ex);
             }
         }
         this.InitScene(this.scene, false);
@@ -498,6 +600,7 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
 
     public void VisualItemCallback_OnBuyItemPressed(DecorateRoomSceneVisualItem uiItem)
     {
+        if (isReplaying) return;
         this.HideSelectionUI();
         GGUtil.SetActive(uiItem, true);
         uiItem.ShowMarkers();
@@ -555,6 +658,11 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
 
     public void ButtonCallback_OnSceneClick()
     {
+        if (isReplaying)
+        {
+            GGSoundSystem.Play(GGSoundSystem.SFXType.CancelPress);
+            return;
+        }
         Vector3 position = UnityEngine.Input.mousePosition;
         if (UnityEngine.Input.touchCount > 0)
         {
@@ -780,25 +888,40 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
 
     public void ConfirmPurchasePanelCallback_OnConfirm(DecorateRoomSceneVisualItem uiItem)
     {
+        if (isReplaying) return;
         SingleCurrencyPrice price = uiItem.visualObjectBehaviour.visualObject.sceneObjectInfo.price;
         WalletManager walletManager = GGPlayerSettings.instance.walletManager;
         GGUtil.SetActive(this.confirmPurchasePanel, false);
-        UnityEngine.Debug.LogFormat("Price is {0} {1}", new object[]
-        {
-            price.cost,
-            price.currency
-        });
-        if ((!Application.isEditor || !this.noCoinsForPurchase) && !walletManager.CanBuyItemWithPrice(price))
-        {
-            this.ButtonCallback_PlayButtonClick();
-            return;
-        }
+        // Removed currency check to allow unlimited purchases
+        // if ((!Application.isEditor || !this.noCoinsForPurchase) && !walletManager.CanBuyItemWithPrice(price))
+        // {
+        //     this.ButtonCallback_PlayButtonClick();
+        //     return;
+        // }
         uiItem.visualObjectBehaviour.visualObject.isOwned = true;
         this.ShowVariations(uiItem, new VariationPanel.InitParams
         {
             isPurchased = true
         });
-        walletManager.BuyItem(price);
+        // record purchase action for replay (also record here in case purchase flow bypasses VariationPanel)
+        try
+        {
+            var rm = SingletonInit<ReplayManager>.instance;
+            if (rm != null)
+            {
+                ReplayAction act = new ReplayAction();
+                act.type = "buy";
+                act.target = uiItem.visualObjectBehaviour.name.ToLower();
+                act.time = Time.realtimeSinceStartup;
+                rm.RecordAction(this.scene.roomName, act);
+            }
+        }
+        catch (Exception ex)
+        {
+            UnityEngine.Debug.LogException(ex);
+        }
+        // Removed actual purchase to keep unlimited currency
+        // walletManager.BuyItem(price);
         this.currencyPanel.SetLabels();
         Analytics.RoomItemBoughtEvent roomItemBoughtEvent = new Analytics.RoomItemBoughtEvent();
         roomItemBoughtEvent.price = price;
@@ -845,6 +968,245 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         }
         InGameSettingsScreen object2 = instance.GetObject<InGameSettingsScreen>();
         instance.Push(object2, false);
+    }
+    private bool isSkipping = false;
+    private bool isReplaying = false;
+
+    [SerializeField]
+    private Button skipReplayButton;
+
+    public void SkipReplay()
+    {
+        isSkipping = true;
+    }
+
+    public void ButtonCallback_OnReplay()
+    {
+        UnityEngine.Debug.Log("ButtonCallback_OnReplay called");
+        GGSoundSystem.Play(GGSoundSystem.SFXType.ButtonPress);
+        try
+        {
+            var rm = SingletonInit<ReplayManager>.instance;
+            UnityEngine.Debug.Log($"ReplayManager instance: {rm}, scene: {this.scene}");
+            if (rm == null || this.scene == null)
+            {
+                UnityEngine.Debug.Log("ReplayManager or scene is null - returning");
+                return;
+            }
+            var rr = rm.GetReplay(this.scene.roomName);
+            if (rr == null || rr.actions == null)
+            {
+                UnityEngine.Debug.Log($"No replay available for room {this.scene.roomName}: rr={rr}, actions={rr?.actions}");
+                if (this.messagePanel != null)
+                {
+                    this.messagePanel.Play("No replay available for this room");
+                }
+                else
+                {
+                    Dialog.instance.Show("No replay available for this room", "OK", null);
+                }
+                return;
+            }
+            // For completed rooms with no recorded actions, create fake buy actions for all owned decor
+            if (rr.actions.Count == 0 && this.scene.roomBackend.isPassed)
+            {
+                // Reset initial states to empty for full replay from start
+                rr.initialStates.Clear();
+                // Set all decor to not owned in initial states
+                foreach (var vob in this.scene.visualObjectBehaviours)
+                {
+                    var initialState = new InitialState();
+                    initialState.objectName = vob.name.ToLower();
+                    initialState.isOwned = false; // Start with no decor owned
+                    initialState.variationIndex = 0;
+                    rr.initialStates.Add(initialState);
+                }
+                // Collect owned decor and reverse the order for reverse replay
+                List<VisualObjectBehaviour> ownedDecor = new List<VisualObjectBehaviour>();
+                foreach (var vob in this.scene.visualObjectBehaviours)
+                {
+                    if (vob.visualObject.isOwned)
+                    {
+                        ownedDecor.Add(vob);
+                    }
+                }
+                ownedDecor.Reverse(); // Reverse to play from last to first
+                int index = 0;
+                foreach (var vob in ownedDecor)
+                {
+                    var action = new ReplayAction();
+                    action.type = "buy";
+                    action.target = vob.visualObject.name;
+                    action.variationIndex = vob.visualObject.ownedVariationIndex;
+                    action.time = index * 2.0f; // 2 seconds delay between each decor placement
+                    rr.actions.Add(action);
+                    index++;
+                }
+            }
+            if (rr.actions.Count == 0)
+            {
+                UnityEngine.Debug.Log($"No replay available for room {this.scene.roomName}: no actions after fake generation");
+                if (this.messagePanel != null)
+                {
+                    this.messagePanel.Play("No replay available for this room");
+                }
+                else
+                {
+                    Dialog.instance.Show("No replay available for this room", "OK", null);
+                }
+                return;
+            }
+            // mark replaying state and show only skip button
+            isReplaying = true;
+            isSkipping = false;
+            if (this.skipReplayButton != null)
+            {
+                GGUtil.SetActive(this.skipReplayButton.gameObject, true);
+            }
+            // stop other animations/flows
+            this.animationEnumerator = null;
+            this.updateEnumerator = null;
+            if (this.scene != null)
+            {
+                try { this.scene.StopCharacterAnimation(); } catch (Exception) { }
+            }
+            StartCoroutine(this.DoReplay(rr));
+        }
+        catch (Exception ex)
+        {
+            UnityEngine.Debug.LogException(ex);
+        }
+    }
+
+    private IEnumerator DoReplay(RoomReplay rr)
+    {
+        if (rr == null) yield break;
+        UnityEngine.Debug.Log("DoReplay started with " + rr.actions.Count + " actions");
+        // hide controls while replaying
+        GGUtil.SetActive(this.controlWidgets, false);
+        // ensure skip button visible (if serialized)
+        if (this.skipReplayButton != null)
+        {
+            GGUtil.SetActive(this.skipReplayButton.gameObject, true);
+        }
+        // reset to initial states
+        try
+        {
+            for (int i = 0; i < rr.initialStates.Count; i++)
+            {
+                var st = rr.initialStates[i];
+                var vb = this.scene.GetBehaviour(st.objectName);
+                UnityEngine.Debug.Log($"Reset object '{st.objectName}': found={vb != null}, owned={st.isOwned}, variation={st.variationIndex}");
+                if (vb != null)
+                {
+                    vb.visualObject.isOwned = st.isOwned;
+                    vb.visualObject.ownedVariationIndex = st.variationIndex;
+                    vb.SetVisualState();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            UnityEngine.Debug.LogException(ex);
+        }
+        yield return null;
+        float prevTime = rr.actions.Count > 0 ? rr.actions[0].time : Time.realtimeSinceStartup;
+        for (int j = 0; j < rr.actions.Count; j++)
+        {
+            var act = rr.actions[j];
+            float delay = 2.0f; // increased delay for better visibility
+            try
+            {
+                if (act.time > 0f)
+                {
+                    delay = Mathf.Max(1.0f, act.time - prevTime); // minimum 1 second delay
+                    prevTime = act.time;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            // apply action
+            try
+            {
+                UnityEngine.Debug.Log($"Applying action: type={act.type}, target={act.target}, variation={act.variationIndex}, delay={delay}s");
+                var vb2 = this.scene.GetBehaviour(act.target);
+                UnityEngine.Debug.Log($"  Found object: {vb2 != null}");
+                if (vb2 != null)
+                {
+                    if (act.type == "buy")
+                    {
+                        vb2.visualObject.isOwned = true;
+                        vb2.SetVisualState();
+                        this.scene.AnimationForVisualBehaviour(vb2); // trigger animation like real purchase
+                        this.visualObjectParticles.CreateParticles(VisualObjectParticles.PositionType.BuySuccess, this.scene.rootTransform.gameObject, vb2);
+                        GGSoundSystem.Play(GGSoundSystem.SFXType.ButtonConfirm);
+                    }
+                    else if (act.type == "change_variation")
+                    {
+                        vb2.visualObject.ownedVariationIndex = act.variationIndex;
+                        vb2.SetVisualState();
+                        this.scene.AnimationForVisualBehaviour(vb2); // trigger animation like real variation change
+                        this.visualObjectParticles.CreateParticles(VisualObjectParticles.PositionType.ChangeSuccess, this.scene.rootTransform.gameObject, vb2);
+                        GGSoundSystem.Play(GGSoundSystem.SFXType.ButtonConfirm);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogException(ex);
+            }
+            // if user requested skip, apply remaining actions instantly and break
+            if (isSkipping)
+            {
+                try
+                {
+                    for (int k = j + 1; k < rr.actions.Count; k++)
+                    {
+                        var remaining = rr.actions[k];
+                        try
+                        {
+                            var vbRem = this.scene.GetBehaviour(remaining.target);
+                            if (vbRem != null)
+                            {
+                                if (remaining.type == "buy")
+                                {
+                                    vbRem.visualObject.isOwned = true;
+                                    vbRem.visualObject.ownedVariationIndex = remaining.variationIndex;
+                                    vbRem.SetVisualState();
+                                }
+                                else if (remaining.type == "change_variation")
+                                {
+                                    vbRem.visualObject.ownedVariationIndex = remaining.variationIndex;
+                                    vbRem.SetVisualState();
+                                }
+                            }
+                        }
+                        catch (Exception ex2)
+                        {
+                            UnityEngine.Debug.LogException(ex2);
+                        }
+                    }
+                }
+                catch (Exception ex3)
+                {
+                    UnityEngine.Debug.LogException(ex3);
+                }
+                break;
+            }
+            yield return new WaitForSeconds(delay);
+        }
+        // done
+        UnityEngine.Debug.Log("Replay finished");
+        // hide skip button and restore controls
+        if (this.skipReplayButton != null)
+        {
+            GGUtil.SetActive(this.skipReplayButton.gameObject, false);
+        }
+        isSkipping = false;
+        isReplaying = false;
+        GGUtil.SetActive(this.controlWidgets, true);
+        yield break;
     }
 
     public override void OnGoBack(NavigationManager nav)
@@ -975,7 +1337,8 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         PlayButton,
         SettingsButton,
         CoinsBar,
-        HeartsBar
+        HeartsBar,
+        ReplayButton
     }
 
     [Serializable]

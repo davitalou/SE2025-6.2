@@ -61,6 +61,7 @@ public class VariationPanel : MonoBehaviour
 
 	public void OnBackgroundClick()
 	{
+		UnityEngine.Debug.Log($"VariationPanel.OnBackgroundClick called, isPurchased={this.initParams.isPurchased}, isVariationChanged={this.isVariationChanged}");
 		GGUtil.SetActive(this, false);
 		this.screen.VariationPanelCallback_OnClosed(this);
 		int ownedVariationIndex = this.uiItem.visualObjectBehaviour.visualObject.ownedVariationIndex;
