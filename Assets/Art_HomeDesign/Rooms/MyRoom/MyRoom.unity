@@ -2690,17 +2690,10 @@ MonoBehaviour:
       animationName: 
   visualObjectBehaviours:
   - {fileID: 1790424292668740865}
-  - {fileID: 0}
-  - {fileID: 1790424292668740709}
   - {fileID: 1790424292668740709}
   - {fileID: 1790424292668740730}
   - {fileID: 1790424292668740878}
   - {fileID: 1790424292668740726}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   sceneFolder: /Users/seandillon/Documents/games/ggmatch3/Assets/Art/Rooms/MyRoom/PSD
   hierarchyJSONFile: /Users/seandillon/Documents/games/ggmatch3/Assets/Art/Rooms/MyRoom/Data/V3/hierarchy.json
   hitboxJSONFile: /Users/seandillon/Documents/games/ggmatch3/Assets/Art/Rooms/MyRoom/Data/V3/hitboxes.json
