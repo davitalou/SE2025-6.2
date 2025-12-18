@@ -14195,3 +14195,5 @@ MonoBehaviour:
       iconHandleRotation: {x: 0, y: 0, z: 0}
   - roomName: ReadingRoom
     objectOverrides: []
+  - roomName: MyRoom
+    objectOverrides: []
