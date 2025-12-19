@@ -264,6 +264,7 @@ public class VisualObjectBehaviour : MonoBehaviour
             return;
         }
 
+        //this.visualObject.isOwned = false;
         bool isOwned = this.visualObject.isOwned;
 
         // Not owned -> show default variation if exists, else hide

@@ -13,26 +13,6 @@ MonoBehaviour:
   m_Name: RoomsDB
   m_EditorClassIdentifier: 
   roomsList:
-  - name: ReadingRoom
-    sceneName: ReadingRoom
-    displayName: ReadingRoom
-    description: 
-    getFromAssetBundleOnEditor: 0
-    assetBundleURLOSX: 
-    assetBundleURLAndroid: 
-    assetBundleURLIOS: 
-    cardSprite: {fileID: 21300000, guid: 07852970ef5877140bd2b8be5a957d17, type: 3}
-    giftDefinition:
-      gifts:
-      - giftType: 3
-        powerupType: 0
-        boosterType: 0
-        amount: 0
-        hours: 2
-    isOnlyForEditor: 0
-    remove: 1
-    totalStarsInRoom: 27
-    editorAssetPath: 'Assets/Art_HomeDesign/Rooms/ReadingRoom '
   - name: MyRoom
     sceneName: MyRoom
     displayName: MyRoom
@@ -93,6 +73,26 @@ MonoBehaviour:
     remove: 0
     totalStarsInRoom: 44
     editorAssetPath: Assets/Art_HomeDesign/Rooms/0020_Bedroom/Room3.unity
+  - name: ReadingRoom
+    sceneName: ReadingRoom
+    displayName: ReadingRoom
+    description: 
+    getFromAssetBundleOnEditor: 0
+    assetBundleURLOSX: 
+    assetBundleURLAndroid: 
+    assetBundleURLIOS: 
+    cardSprite: {fileID: 21300000, guid: 07852970ef5877140bd2b8be5a957d17, type: 3}
+    giftDefinition:
+      gifts:
+      - giftType: 3
+        powerupType: 0
+        boosterType: 0
+        amount: 0
+        hours: 2
+    isOnlyForEditor: 0
+    remove: 1
+    totalStarsInRoom: 27
+    editorAssetPath: 'Assets/Art_HomeDesign/Rooms/ReadingRoom '
   - name: GirlsBedroom
     sceneName: Room050_GirlsBedroom
     displayName: Girls Bedroom

@@ -105,8 +105,13 @@ public class VisualObjectVariation : MonoBehaviour
 
 	private void ResetSprites()
 	{
+        //UnityEngine.Debug.LogError($"[ResetSprites] ERROR at object: {name}", this);
 		for (int i = 0; i < this.sprites.Count; i++)
 		{
+			if(this.sprites[i] == null)
+            {
+				UnityEngine.Debug.LogError($"[ResetSprites] ERROR at object: {name} at index {i}", this);
+			}
 			this.sprites[i].ResetVisually();
 		}
 	}
