@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 416541476}
   - component: {fileID: 416541477}
   m_Layer: 0
-  m_Name: CAY3
+  m_Name: CAY23
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -904,7 +904,7 @@ Transform:
   m_GameObject: {fileID: 739863783}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1324, y: -606, z: -7.202736}
+  m_LocalPosition: {x: 1341, y: -616, z: -7.202736}
   m_LocalScale: {x: 64.56115, y: 53.721382, z: 30}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -979,7 +979,7 @@ GameObject:
   - component: {fileID: 741709359}
   - component: {fileID: 741709360}
   m_Layer: 0
-  m_Name: cay1
+  m_Name: cay11
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1121,7 +1121,7 @@ GameObject:
   - component: {fileID: 907640148}
   - component: {fileID: 907640149}
   m_Layer: 0
-  m_Name: cay3
+  m_Name: cay23
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1260,7 +1260,7 @@ GameObject:
   - component: {fileID: 926226905}
   - component: {fileID: 926226906}
   m_Layer: 0
-  m_Name: CAY1
+  m_Name: CAY11
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1737,17 +1737,7 @@ MonoBehaviour:
       p2: {x: 1715.134, y: -813.84937}
       p3: {x: 1666.5488, y: -837.40875}
     hitboxesList: []
-    dashLines:
-    - points:
-      - {x: 85.70984, y: -211.2222}
-      - {x: 181.3255, y: -219.1042}
-      - {x: 184.0763, y: -618.8359}
-      - {x: 88.81836, y: -622.5667}
-    - points:
-      - {x: 393.2537, y: -236.5745}
-      - {x: 472.4821, y: -243.1057}
-      - {x: 474.2401, y: -607.4713}
-      - {x: 395.2676, y: -610.5643}
+    dashLines: []
     iconHandlePosition: {x: 276, y: -421.5, z: 0}
     hasDefaultVariation: 0
     defaultVariation:
@@ -2361,7 +2351,7 @@ GameObject:
   - component: {fileID: 1790424290823246439}
   - component: {fileID: 1790424292668740721}
   m_Layer: 0
-  m_Name: cay2
+  m_Name: cay22
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2597,7 +2587,7 @@ GameObject:
   - component: {fileID: 1790424290823246606}
   - component: {fileID: 1790424292668740813}
   m_Layer: 0
-  m_Name: CAY1
+  m_Name: CAY21
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2715,7 +2705,7 @@ GameObject:
   - component: {fileID: 1790424290823246667}
   - component: {fileID: 1790424292668740835}
   m_Layer: 0
-  m_Name: CAY2
+  m_Name: CAY22
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2748,7 +2738,7 @@ GameObject:
   - component: {fileID: 1790424290823246671}
   - component: {fileID: 1790424292668740837}
   m_Layer: 0
-  m_Name: cay1
+  m_Name: cay21
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3061,7 +3051,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790424290772914341}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3201,12 +3191,12 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1790424290823246724}
-  - {fileID: 1790424290823246416}
   - {fileID: 1269606684}
   - {fileID: 1790424290823246454}
   - {fileID: 1790424290823246752}
   - {fileID: 1790424290823246447}
   - {fileID: 1790424290823246532}
+  - {fileID: 1790424290823246416}
   m_Father: {fileID: 1790424290823246669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1790424290823246513
@@ -3845,7 +3835,7 @@ MonoBehaviour:
     index: 2
     sceneObjectInfo:
       objectName: 
-      displayName: ban
+      displayName: table
       backwardDependencies: []
       price:
         currency: 2
@@ -3864,7 +3854,7 @@ MonoBehaviour:
       isVisualObjectOverriden: 1
       objectOverride:
         isSettingSaved: 0
-        visualObjectName: ottoman
+        visualObjectName: table
         iconHandlePositionOffset: {x: 0, y: 20.7, z: 0}
         iconHandlePositionScale: {x: 1, y: 1, z: 1}
         iconHandleRotation: {x: 0, y: 0, z: 0}
@@ -4168,9 +4158,7 @@ MonoBehaviour:
     sceneObjectInfo:
       objectName: 
       displayName: sofa
-      backwardDependencies:
-      - window
-      - windowleft
+      backwardDependencies: []
       price:
         currency: 2
         cost: 2
@@ -4458,17 +4446,7 @@ MonoBehaviour:
       p2: {x: 986.67957, y: -528.9435}
       p3: {x: 955.7227, y: -783.30695}
     hitboxesList: []
-    dashLines:
-    - points:
-      - {x: 85.70984, y: -211.2222}
-      - {x: 181.3255, y: -219.1042}
-      - {x: 184.0763, y: -618.8359}
-      - {x: 88.81836, y: -622.5667}
-    - points:
-      - {x: 393.2537, y: -236.5745}
-      - {x: 472.4821, y: -243.1057}
-      - {x: 474.2401, y: -607.4713}
-      - {x: 395.2676, y: -610.5643}
+    dashLines: []
     iconHandlePosition: {x: 276, y: -421.5, z: 0}
     hasDefaultVariation: 0
     defaultVariation:
@@ -4549,6 +4527,7 @@ MonoBehaviour:
   - {fileID: 1790424292668740878}
   - {fileID: 1790424292668740726}
   - {fileID: 1269606685}
+  - {fileID: 1790424292668740775}
   sceneFolder: /Users/seandillon/Documents/games/ggmatch3/Assets/Art/Rooms/MyRoom/PSD
   hierarchyJSONFile: /Users/seandillon/Documents/games/ggmatch3/Assets/Art/Rooms/MyRoom/Data/V3/hierarchy.json
   hitboxJSONFile: /Users/seandillon/Documents/games/ggmatch3/Assets/Art/Rooms/MyRoom/Data/V3/hitboxes.json
@@ -4567,9 +4546,9 @@ MonoBehaviour:
     objects:
     - name: tusach
       variations:
-      - name: instrument_l1
+      - name: tusach1
         sprites:
-        - spriteName: INSTRUMENT_L1
+        - spriteName: TUSACH1
           spritePath: 
           isShadow: 0
           totalWidth: 0
@@ -4584,9 +4563,9 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-      - name: instrument_l2
+      - name: tusach2
         sprites:
-        - spriteName: INSTRUMENT_L2
+        - spriteName: TUSACH2
           spritePath: 
           isShadow: 0
           totalWidth: 0
@@ -4598,12 +4577,12 @@ MonoBehaviour:
           pivotPosition: {x: 1605.486, y: -984.6157, z: 4.764545}
           depth: 4002
           initialDepth: 4000
-        thumbnailName: 
+        thumbnailName: TUSACH2
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-      - name: instrument_l3
+      - name: tusach3
         sprites:
-        - spriteName: INSTRUMENT_L3
+        - spriteName: TUSACH3
           spritePath: 
           isShadow: 0
           totalWidth: 0
@@ -4808,7 +4787,7 @@ MonoBehaviour:
           dc: 23.37635
           ac: 0.00003552272
           bc: -0.02481203
-        p1: {x: 970.7638, y: -789.04895}
+        p1: {x: 965.70233, y: -807.60767}
         p2: {x: 1238.8834, y: -875.91907}
         p3: {x: 1085.1853, y: -584.4166}
       - depth: 0
@@ -4842,7 +4821,7 @@ MonoBehaviour:
           bc: -0.002127941
         p1: {x: 972.82465, y: -663.32666}
         p2: {x: 1063.3778, y: -635.83136}
-        p3: {x: 972.5777, y: -791.8659}
+        p3: {x: 967.5162, y: -823.922}
       - depth: 0
         planeZSetup:
           dc: 6.394721
@@ -4876,9 +4855,9 @@ MonoBehaviour:
         hitboxTriangles: []
     - name: den
       variations:
-      - name: lamp_l1
+      - name: den1
         sprites:
-        - spriteName: LAMP_L1
+        - spriteName: DEN1
           spritePath: 
           isShadow: 0
           totalWidth: 0
@@ -4893,9 +4872,9 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-      - name: lamp_l2
+      - name: den2
         sprites:
-        - spriteName: LAMP_L2
+        - spriteName: DEN2
           spritePath: 
           isShadow: 0
           totalWidth: 0
@@ -4910,9 +4889,9 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-      - name: lamp_l3
+      - name: den3
         sprites:
-        - spriteName: LAMP_L3
+        - spriteName: DEN3
           spritePath: 
           isShadow: 0
           totalWidth: 0
@@ -4938,7 +4917,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - Perfect for reading
-        groupIndex: 4
+        groupIndex: -1
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -5020,7 +4999,24 @@ MonoBehaviour:
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
     - name: background_default
-      variations: []
+      variations:
+      - name: background_default
+        sprites:
+        - spriteName: BACKGROUND_Default
+          spritePath: 
+          isShadow: 0
+          totalWidth: 0
+          totalHeight: 0
+          left: 0
+          right: 0
+          top: 0
+          bottom: 0
+          pivotPosition: {x: 0, y: 0, z: 0}
+          depth: 0
+          initialDepth: 0
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
       index: 18
       sceneObjectInfo:
         objectName: 
@@ -5072,7 +5068,58 @@ MonoBehaviour:
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
     - name: cay2
-      variations: []
+      variations:
+      - name: cay21
+        sprites:
+        - spriteName: CAY21
+          spritePath: 
+          isShadow: 0
+          totalWidth: 0
+          totalHeight: 0
+          left: 0
+          right: 0
+          top: 0
+          bottom: 0
+          pivotPosition: {x: 0, y: 0, z: 0}
+          depth: 0
+          initialDepth: 0
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
+      - name: cay22
+        sprites:
+        - spriteName: CAY22
+          spritePath: 
+          isShadow: 0
+          totalWidth: 0
+          totalHeight: 0
+          left: 0
+          right: 0
+          top: 0
+          bottom: 0
+          pivotPosition: {x: 0, y: 0, z: 0}
+          depth: 0
+          initialDepth: 0
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
+      - name: cay32
+        sprites:
+        - spriteName: CAY32
+          spritePath: 
+          isShadow: 0
+          totalWidth: 0
+          totalHeight: 0
+          left: 0
+          right: 0
+          top: 0
+          bottom: 0
+          pivotPosition: {x: 0, y: 0, z: 0}
+          depth: 0
+          initialDepth: 0
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
       index: 18
       sceneObjectInfo:
         objectName: 
@@ -5152,7 +5199,7 @@ MonoBehaviour:
       hitboxesList: []
       dashLines: []
       iconHandlePosition: {x: 0, y: 0, z: 0}
-      hasDefaultVariation: 1
+      hasDefaultVariation: 0
       defaultVariation:
         name: background_default
         sprites:
@@ -5172,7 +5219,24 @@ MonoBehaviour:
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
     - name: cay1
-      variations: []
+      variations:
+      - name: cay11
+        sprites:
+        - spriteName: CAY11
+          spritePath: 
+          isShadow: 0
+          totalWidth: 0
+          totalHeight: 0
+          left: 0
+          right: 0
+          top: 0
+          bottom: 0
+          pivotPosition: {x: 0, y: 0, z: 0}
+          depth: 0
+          initialDepth: 0
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
       index: 18
       sceneObjectInfo:
         objectName: 
@@ -5244,7 +5308,7 @@ MonoBehaviour:
       hitboxesList: []
       dashLines: []
       iconHandlePosition: {x: 0, y: 0, z: 0}
-      hasDefaultVariation: 1
+      hasDefaultVariation: 0
       defaultVariation:
         name: background_default
         sprites:
@@ -5264,11 +5328,62 @@ MonoBehaviour:
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
     - name: ban
-      variations: []
+      variations:
+      - name: ban1
+        sprites:
+        - spriteName: BAN1
+          spritePath: 
+          isShadow: 0
+          totalWidth: 0
+          totalHeight: 0
+          left: 0
+          right: 0
+          top: 0
+          bottom: 0
+          pivotPosition: {x: 0, y: 0, z: 0}
+          depth: 0
+          initialDepth: 0
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
+      - name: ban2
+        sprites:
+        - spriteName: BAN2
+          spritePath: 
+          isShadow: 0
+          totalWidth: 0
+          totalHeight: 0
+          left: 0
+          right: 0
+          top: 0
+          bottom: 0
+          pivotPosition: {x: 0, y: 0, z: 0}
+          depth: 0
+          initialDepth: 0
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
+      - name: ban3
+        sprites:
+        - spriteName: BAN3
+          spritePath: 
+          isShadow: 0
+          totalWidth: 0
+          totalHeight: 0
+          left: 0
+          right: 0
+          top: 0
+          bottom: 0
+          pivotPosition: {x: 0, y: 0, z: 0}
+          depth: 0
+          initialDepth: 0
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
       index: 18
       sceneObjectInfo:
         objectName: 
-        displayName: 
+        displayName: table
         backwardDependencies: []
         price:
           currency: 2
@@ -5421,7 +5536,7 @@ MonoBehaviour:
         - {x: 1311.255, y: -1115.541}
         - {x: 1193, y: -896.846}
       iconHandlePosition: {x: 0, y: 0, z: 0}
-      hasDefaultVariation: 1
+      hasDefaultVariation: 0
       defaultVariation:
         name: background_default
         sprites:
@@ -5486,12 +5601,30 @@ MonoBehaviour:
   uiAnchor: {fileID: 0}
   objectId: 
   defaultVariation: {fileID: 1790424292668740891}
-  variations: []
+  variations:
+  - {fileID: 1790424292668740891}
   allVariations:
   - {fileID: 1790424292668740891}
   visualObject:
     name: background
-    variations: []
+    variations:
+    - name: background_default
+      sprites:
+      - spriteName: BACKGROUND_Default
+        spritePath: 
+        isShadow: 0
+        totalWidth: 0
+        totalHeight: 0
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0
+        pivotPosition: {x: 0, y: 0, z: 0}
+        depth: 0
+        initialDepth: 0
+      thumbnailName: 
+      thumbnailSprite: {fileID: 0}
+      hitboxTriangles: []
     index: 25
     sceneObjectInfo:
       objectName: 
@@ -5974,12 +6107,7 @@ MonoBehaviour:
       p2: {x: 787.72406, y: -306.6001}
       p3: {x: 784.3027, y: -178.4256}
     hitboxesList: []
-    dashLines:
-    - points:
-      - {x: 1204.001, y: -190.2222}
-      - {x: 1332.722, y: -155.8762}
-      - {x: 1157.213, y: -128.4185}
-      - {x: 1038.436, y: -168.3019}
+    dashLines: []
     iconHandlePosition: {x: 1182, y: -267.5, z: 0}
     hasDefaultVariation: 0
     defaultVariation:
@@ -6015,9 +6143,9 @@ MonoBehaviour:
   visualObject:
     name: tusach
     variations:
-    - name: seat_l1
+    - name: tusach1
       sprites:
-      - spriteName: SEAT_L1
+      - spriteName: TUSACH1
         spritePath: 
         isShadow: 0
         totalWidth: 0
@@ -6032,26 +6160,9 @@ MonoBehaviour:
       thumbnailName: 
       thumbnailSprite: {fileID: 0}
       hitboxTriangles: []
-    - name: seat_l2
+    - name: tusach2
       sprites:
-      - spriteName: SEAT_L2
-        spritePath: 
-        isShadow: 0
-        totalWidth: 0
-        totalHeight: 0
-        left: 0
-        right: 550
-        top: 872
-        bottom: 472
-        pivotPosition: {x: 257.6433, y: -825.1957, z: 6.723701}
-        depth: 2802
-        initialDepth: 2800
-      thumbnailName: 
-      thumbnailSprite: {fileID: 0}
-      hitboxTriangles: []
-    - name: seat_l3
-      sprites:
-      - spriteName: SEAT_L3
+      - spriteName: TUSACH2
         spritePath: 
         isShadow: 0
         totalWidth: 0
@@ -6070,8 +6181,7 @@ MonoBehaviour:
     sceneObjectInfo:
       objectName: 
       displayName: tusach
-      backwardDependencies:
-      - bookcase
+      backwardDependencies: []
       price:
         currency: 2
         cost: 2
