@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,42 +11,54 @@ public class VisualObjectVariation : MonoBehaviour
 		get
 		{
 			if (this.savedThumbnailSprite != null)
-			{
 				return this.savedThumbnailSprite;
-			}
-			string thumbnailNamePrefix = this.visualObjectBehaviour.visualObject.sceneObjectInfo.thumbnailNamePrefix;
-			if (!string.IsNullOrEmpty(thumbnailNamePrefix))
+
+			string prefix = this.visualObjectBehaviour.visualObject.sceneObjectInfo.thumbnailNamePrefix;
+
+			if (!string.IsNullOrEmpty(prefix))
 			{
 				for (int i = 0; i < this.sprites.Count; i++)
 				{
-					VisualSprite visualSprite = this.sprites[i];
-					if (!visualSprite.visualSprite.isShadow && !(visualSprite.spriteRenderer == null))
+					VisualSprite vs = this.sprites[i];
+					if (vs == null || vs.visualSprite == null) continue;
+					if (vs.visualSprite.isShadow) continue;
+					if (vs.spriteRenderer == null) continue;
+
+					Sprite sp = vs.spriteRenderer.sprite;
+					if (sp == null) continue; // ✅ thêm cái này
+
+					if (vs.visualSprite.spriteName != null &&
+						vs.visualSprite.spriteName.ToLower().StartsWith(prefix.ToLower()))
 					{
-						Sprite sprite = visualSprite.spriteRenderer.sprite;
-						if (visualSprite.visualSprite.spriteName.ToLower().StartsWith(thumbnailNamePrefix.ToLower()))
-						{
-							return sprite;
-						}
+						return sp;
 					}
 				}
 			}
+
 			for (int j = 0; j < this.sprites.Count; j++)
 			{
-				VisualSprite visualSprite2 = this.sprites[j];
-				if (!visualSprite2.visualSprite.isShadow && visualSprite2.spriteRenderer != null)
-				{
-					return visualSprite2.spriteRenderer.sprite;
-				}
+				VisualSprite vs = this.sprites[j];
+				if (vs == null || vs.visualSprite == null) continue;
+				if (vs.visualSprite.isShadow) continue;
+				if (vs.spriteRenderer == null) continue;
+
+				Sprite sp = vs.spriteRenderer.sprite;
+				if (sp == null) continue; // ✅ thêm cái này
+
+				return sp;
 			}
+
 			return null;
 		}
 	}
+
 
 	public void SetActive(bool isActive)
 	{
 		this.animationEnum = null;
 		if (isActive)
 		{
+			//isActive = false;
 			this.ResetSprites();
 		}
 		GGUtil.SetActive(base.gameObject, isActive);
@@ -105,7 +117,6 @@ public class VisualObjectVariation : MonoBehaviour
 
 	private void ResetSprites()
 	{
-        //UnityEngine.Debug.LogError($"[ResetSprites] ERROR at object: {name}", this);
 		for (int i = 0; i < this.sprites.Count; i++)
 		{
 			if(this.sprites[i] == null)

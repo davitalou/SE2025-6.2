@@ -1,21 +1,59 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class VariationButton : MonoBehaviour
 {
+
 	public void Init(VariationPanel variationPanel, VisualObjectBehaviour visualObjectBehaviour, int variationIndex)
 	{
 		this.visualObjectBehaviour = visualObjectBehaviour;
-		Sprite thumbnailSprite = visualObjectBehaviour.variations[variationIndex].thumbnailSprite;
+
+		var v = (visualObjectBehaviour != null && visualObjectBehaviour.variations != null
+				 && variationIndex >= 0 && variationIndex < visualObjectBehaviour.variations.Count)
+			? visualObjectBehaviour.variations[variationIndex]
+			: null;
+
+		Sprite thumb = (v != null) ? v.thumbnailSprite : null;
+
+		Debug.Log(
+			$"[VariationButton] obj={(visualObjectBehaviour != null ? visualObjectBehaviour.name : "NULL")} " +
+			$"idx={variationIndex} " +
+			$"var={(v != null ? v.name : "NULL")} " +
+			$"thumbNull={(thumb == null)} " +
+			$"imageNull={(image == null)} " +
+			$"imageSpriteNull={(image != null ? (image.sprite == null).ToString() : "N/A")}",
+			this
+		);
+
+		// Guard để không crash:
+		if (image == null)
+		{
+			Debug.LogError("[VariationButton.Init] image component chưa gán trong Inspector", this);
+			return;
+		}
+
+		if (thumb == null)
+		{
+			Debug.LogWarning($"[VariationButton.Init] thumbnailSprite NULL -> ẩn button. obj={visualObjectBehaviour.name}, idx={variationIndex}", this);
+			image.enabled = false; // hoặc SetActive(false)
+			return;
+		}
+
+		image.enabled = true;
+		image.sprite = thumb;
+
 		this.variationIndex = variationIndex;
-		this.image.sprite = thumbnailSprite;
-		this._imageHeight = this.image.sprite.rect.height;
-		this._ratio = this.image.sprite.rect.width / this.image.sprite.rect.height;
 		this.variationPanel = variationPanel;
-		this.Fit();
+
+		// Từ đây mới được đọc rect
+		this._imageHeight = thumb.rect.height;
+		this._ratio = thumb.rect.width / thumb.rect.height;
+
+		Fit();
 	}
+
 
 	public void Fit()
 	{
@@ -108,6 +146,7 @@ public class VariationButton : MonoBehaviour
 	public List<Sprite> sprites = new List<Sprite>();
 
 	private float _imageHeight;
+
 
 	private float _ratio;
 

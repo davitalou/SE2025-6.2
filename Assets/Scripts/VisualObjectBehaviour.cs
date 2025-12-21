@@ -276,6 +276,7 @@ public class VisualObjectBehaviour : MonoBehaviour
             }
             else
             {
+                //this.visualObject.isOwned = false;
                 this.Hide();
             }
             return;
@@ -343,6 +344,13 @@ public class VisualObjectBehaviour : MonoBehaviour
     {
         this.ShowVariation(null);
     }
+
+    void HideAll()
+    {
+        for (int i = 0; i < variations.Count; i++)
+            variations[i].SetActive(false);
+    }
+
 
     public static void Destroy(GameObject obj)
     {
