@@ -301,13 +301,10 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         if (this.skipReplayButton == null)
         {
             this.skipReplayButton = UnityEngine.GameObject.Find("SkipReplayButton")?.GetComponent<Button>();
-            UnityEngine.Debug.Log($"Found skipReplayButton: {this.skipReplayButton}");
         }
-        UnityEngine.Debug.Log($"Setting skip button active=false, skipReplayButton={this.skipReplayButton}");
         if (this.skipReplayButton != null)
         {
             GGUtil.SetActive(this.skipReplayButton.gameObject, false);
-            UnityEngine.Debug.Log("Skip button set to false");
         }
         else
         {
