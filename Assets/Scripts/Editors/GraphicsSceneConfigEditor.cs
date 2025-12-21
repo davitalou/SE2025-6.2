@@ -1,6 +1,6 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
 
 [CustomEditor(typeof(DecoratingScene))]
 public class GraphicsSceneConfigEditor : Editor
@@ -46,3 +46,4 @@ public class GraphicsSceneConfigEditor : Editor
         }
     }
 }
+#endif
