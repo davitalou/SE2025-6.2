@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 159074598}
   - component: {fileID: 159074597}
   m_Layer: 0
-  m_Name: cayS
+  m_Name: cayS2
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1226,7 +1226,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2604
+  m_SortingOrder: 3500
   m_Sprite: {fileID: 21300000, guid: f8a9f7698d20530469c5ca084b32bcd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1658,7 +1658,7 @@ GameObject:
   - component: {fileID: 1123441750}
   - component: {fileID: 1123441749}
   m_Layer: 0
-  m_Name: cayS
+  m_Name: cayS1
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1774,7 +1774,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2604
+  m_SortingOrder: 3500
   m_Sprite: {fileID: 21300000, guid: 991c4d20ffb72394c9a63582c8290fce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2045,11 +2045,11 @@ MonoBehaviour:
   - {fileID: 159074597}
   - {fileID: 1428533227}
   visualObject:
-    name: cay2
+    name: cayS
     variations:
-    - name: cay1
+    - name: cayS1
       sprites:
-      - spriteName: CAY1
+      - spriteName: CAYS1
         spritePath: 
         isShadow: 0
         totalWidth: 0
@@ -2064,9 +2064,9 @@ MonoBehaviour:
       thumbnailName: 
       thumbnailSprite: {fileID: 0}
       hitboxTriangles: []
-    - name: cay2
+    - name: cayS2
       sprites:
-      - spriteName: CAY2
+      - spriteName: CAYS2
         spritePath: 
         isShadow: 0
         totalWidth: 0
@@ -2081,9 +2081,9 @@ MonoBehaviour:
       thumbnailName: 
       thumbnailSprite: {fileID: 0}
       hitboxTriangles: []
-    - name: cay3
+    - name: cayS3
       sprites:
-      - spriteName: CAY3
+      - spriteName: CAYS3
         spritePath: 
         isShadow: 0
         totalWidth: 0
@@ -2098,10 +2098,10 @@ MonoBehaviour:
       thumbnailName: 
       thumbnailSprite: {fileID: 0}
       hitboxTriangles: []
-    index: 2
+    index: 3
     sceneObjectInfo:
       objectName: 
-      displayName: cay2
+      displayName: cayS
       backwardDependencies: []
       price:
         currency: 2
@@ -2287,7 +2287,7 @@ GameObject:
   - component: {fileID: 1428533226}
   - component: {fileID: 1428533227}
   m_Layer: 0
-  m_Name: cayS
+  m_Name: cayS3
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
