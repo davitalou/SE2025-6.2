@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node node-backend/server.js",
+    "start": "npm run start:frontend",
+    "start:frontend": "node node-frontend/server.js",
+    "start:api": "node node-backend-api/server.js",
     "migrate": "node node-console/cli.js migrate",
     "undo": "node node-console/cli.js undo",
     "seed": "node node-console/cli.js seed"

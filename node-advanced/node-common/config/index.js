@@ -14,7 +14,7 @@ import * as test from "./test.js";
 // import * as db from "./db.js"; // thêm sau nếu cần
 
 // ----------------------------------------------------
-// ✅ Cấu hình tham số môi trường dùng chung
+// Cấu hình tham số môi trường dùng chung
 // ----------------------------------------------------
 export const commonParams = {
   adminEmail: process.env.ADMIN_EMAIL || "admin@example.com",
@@ -23,7 +23,7 @@ export const commonParams = {
 };
 
 // ----------------------------------------------------
-// ✅ Gộp cấu hình chung thành 1 đối tượng xuất mặc định
+// Gộp cấu hình chung thành 1 đối tượng xuất mặc định
 // ----------------------------------------------------
 const commonConfig = {
   aliases,

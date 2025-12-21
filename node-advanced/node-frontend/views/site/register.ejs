@@ -1,0 +1,81 @@
+<% 
+  const OLD = oldData ?? { username: "", email: "" };
+  const ALERT = alert ?? null;
+%>
+
+<div class="site-register mt-5 offset-lg-3 col-lg-6">
+  <div class="card shadow-lg rounded-4 border-0">
+    <div class="card-body p-4">
+      <h1 class="mb-3 text-center text-primary"><%= title %></h1>
+      <p class="text-muted text-center mb-4">Create your new account</p>
+
+      <% if (ALERT) { %>
+        <div class="alert alert-<%= ALERT.type %> alert-dismissible fade show" role="alert">
+          <%= ALERT.message %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      <% } %>
+
+      <form id="register-form" action="/register" method="POST" class="needs-validation" novalidate>
+
+        <div class="form-group mb-3">
+          <label for="username" class="form-label fw-semibold">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control form-control-lg"
+            placeholder="Enter username"
+            value="<%= OLD.username %>"
+            required
+          >
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="email" class="form-label fw-semibold">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control form-control-lg"
+            placeholder="Enter email"
+            value="<%= OLD.email %>"
+            required
+          >
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="password" class="form-label fw-semibold">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control form-control-lg"
+            placeholder="Enter password"
+            required
+          >
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="confirmPassword" class="form-label fw-semibold">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            class="form-control form-control-lg"
+            placeholder="Confirm password"
+            required
+          >
+        </div>
+
+        <button type="submit" class="btn btn-success w-100 py-2">
+          Register
+        </button>
+      </form>
+
+      <div class="text-center mt-3">
+        <a href="/login" class="text-decoration-none text-secondary small">Already have an account? Login</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<%
+  const TITLE = title ?? "Error";
+  const MESSAGE = message ?? "An unexpected error occurred while processing your request.";
+%>
+
+<div class="alert alert-danger mt-5">
+  <h1><%= TITLE %></h1>
+  <p><%= MESSAGE %></p>
+  <p>Please contact support if this problem persists.</p>
+</div>

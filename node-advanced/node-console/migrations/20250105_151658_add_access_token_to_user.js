@@ -1,11 +1,12 @@
+"use strict";
+
 export async function up(queryInterface, Sequelize) {
-  await queryInterface.addColumn("user", "access_token", {
-    type: Sequelize.STRING(512),
+  await queryInterface.addColumn("user", "verification_token", {
+    type: Sequelize.STRING(255),
     allowNull: true,
-    after: "auth_key"
   });
 }
 
-export async function down(queryInterface) {
-  await queryInterface.removeColumn("user", "access_token");
+export async function down(queryInterface, Sequelize) {
+  await queryInterface.removeColumn("user", "verification_token");
 }
