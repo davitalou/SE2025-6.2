@@ -2431,7 +2431,7 @@ MonoBehaviour:
       thumbnailName: 
       thumbnailSprite: {fileID: 0}
       hitboxTriangles: []
-    index: 1
+    index: 6
     sceneObjectInfo:
       objectName: 
       displayName: tree1
@@ -2442,7 +2442,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - The curtains frame the window nicely
-      groupIndex: 4
+      groupIndex: 5
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -4467,8 +4467,8 @@ Transform:
   - {fileID: 1790424290823246454}
   - {fileID: 1790424290823246752}
   - {fileID: 1790424290823246447}
-  - {fileID: 1790424290823246532}
   - {fileID: 1790424290823246416}
+  - {fileID: 1790424290823246532}
   - {fileID: 1315258320}
   m_Father: {fileID: 1790424290823246669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4512,7 +4512,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790424290772914457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5118,7 +5118,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Such a nice detail and practical too!
-      groupIndex: 3
+      groupIndex: 2
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -5429,7 +5429,7 @@ MonoBehaviour:
       thumbnailName: 
       thumbnailSprite: {fileID: 0}
       hitboxTriangles: []
-    index: 4
+    index: 5
     sceneObjectInfo:
       objectName: 
       displayName: sofa
@@ -5440,7 +5440,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Beautiful curtains!
-      groupIndex: 5
+      groupIndex: 3
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -5654,7 +5654,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - The curtains frame the window nicely
-      groupIndex: 4
+      groupIndex: 5
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -5882,7 +5882,7 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-      index: 3
+      index: 4
       sceneObjectInfo:
         objectName: 
         displayName: bookcase
@@ -5894,7 +5894,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - A personal touch!
-        groupIndex: -1
+        groupIndex: 4
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -6036,7 +6036,7 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-      index: 4
+      index: 5
       sceneObjectInfo:
         objectName: 
         displayName: Sofa
@@ -6049,7 +6049,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - Comfy modern sofa
-        groupIndex: -1
+        groupIndex: 3
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -6191,7 +6191,7 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-      index: 6
+      index: 1
       sceneObjectInfo:
         objectName: 
         displayName: Lamp
@@ -6344,7 +6344,7 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-      index: 1
+      index: 2
       sceneObjectInfo:
         objectName: 
         displayName: tree2
@@ -6354,7 +6354,7 @@ MonoBehaviour:
           cost: 1
         autoSelect: 0
         toSayAfterOpen: []
-        groupIndex: -1
+        groupIndex: 5
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -6505,7 +6505,7 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-      index: 2
+      index: 3
       sceneObjectInfo:
         objectName: 
         displayName: tree1
@@ -6515,7 +6515,7 @@ MonoBehaviour:
           cost: 1
         autoSelect: 0
         toSayAfterOpen: []
-        groupIndex: -1
+        groupIndex: 5
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -6685,7 +6685,7 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-      index: 7
+      index: 6
       sceneObjectInfo:
         objectName: 
         displayName: table
@@ -6695,7 +6695,7 @@ MonoBehaviour:
           cost: 1
         autoSelect: 0
         toSayAfterOpen: []
-        groupIndex: -1
+        groupIndex: 2
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -6913,7 +6913,7 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-      index: 8
+      index: 7
       sceneObjectInfo:
         objectName: 
         displayName: wall
@@ -6923,7 +6923,7 @@ MonoBehaviour:
           cost: 1
         autoSelect: 0
         toSayAfterOpen: []
-        groupIndex: -1
+        groupIndex: 1
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -7205,7 +7205,7 @@ MonoBehaviour:
       thumbnailName: 
       thumbnailSprite: {fileID: 0}
       hitboxTriangles: []
-    index: 8
+    index: 7
     sceneObjectInfo:
       objectName: 
       displayName: 
@@ -7215,7 +7215,7 @@ MonoBehaviour:
         cost: 1
       autoSelect: 0
       toSayAfterOpen: []
-      groupIndex: -1
+      groupIndex: 1
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -7681,7 +7681,7 @@ MonoBehaviour:
       thumbnailName: 
       thumbnailSprite: {fileID: 0}
       hitboxTriangles: []
-    index: 0
+    index: 7
     sceneObjectInfo:
       objectName: 
       displayName: lanterm
@@ -7692,7 +7692,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Wow! A stunning chandelier!
-      groupIndex: 3
+      groupIndex: 5
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -7842,7 +7842,24 @@ MonoBehaviour:
       thumbnailName: 
       thumbnailSprite: {fileID: 0}
       hitboxTriangles: []
-    index: 3
+    - name: tusach3
+      sprites:
+      - spriteName: TUSACH3
+        spritePath: 
+        isShadow: 0
+        totalWidth: 0
+        totalHeight: 0
+        left: 0
+        right: 550
+        top: 872
+        bottom: 472
+        pivotPosition: {x: 257.6433, y: -825.1957, z: 6.723701}
+        depth: 2802
+        initialDepth: 2800
+      thumbnailName: 
+      thumbnailSprite: {fileID: 0}
+      hitboxTriangles: []
+    index: 4
     sceneObjectInfo:
       objectName: 
       displayName: tusach

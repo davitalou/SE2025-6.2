@@ -900,11 +900,11 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         WalletManager walletManager = GGPlayerSettings.instance.walletManager;
         GGUtil.SetActive(this.confirmPurchasePanel, false);
         // Removed currency check to allow unlimited purchases
-        // if ((!Application.isEditor || !this.noCoinsForPurchase) && !walletManager.CanBuyItemWithPrice(price))
-        // {
-        //     this.ButtonCallback_PlayButtonClick();
-        //     return;
-        // }
+        if ((!Application.isEditor || !this.noCoinsForPurchase) && !walletManager.CanBuyItemWithPrice(price))
+        {
+            this.ButtonCallback_PlayButtonClick();
+            return;
+        }
         uiItem.visualObjectBehaviour.visualObject.isOwned = true;
         this.ShowVariations(uiItem, new VariationPanel.InitParams
         {
@@ -927,7 +927,7 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
             UnityEngine.Debug.LogException(ex);
         }
         // Removed actual purchase to keep unlimited currency
-        // walletManager.BuyItem(price);
+        walletManager.BuyItem(price);
         this.currencyPanel.SetLabels();
         Analytics.RoomItemBoughtEvent roomItemBoughtEvent = new Analytics.RoomItemBoughtEvent();
         roomItemBoughtEvent.price = price;
@@ -1099,10 +1099,25 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                 }
                 return;
             }
-            // For completed rooms with no recorded actions, create fake buy actions for all owned decor
-            if (rr.actions.Count == 0 && this.scene.roomBackend.isPassed)
+            // Check if recorded actions contain objects not in current scene (e.g., wrong room replay)
+            bool hasInvalidActions = false;
+            if (rr.actions.Count > 0)
+            {
+                foreach (var act in rr.actions)
+                {
+                    if (this.scene.GetBehaviour(act.target) == null)
+                    {
+                        hasInvalidActions = true;
+                        UnityEngine.Debug.Log($"Invalid action target '{act.target}' not found in scene {this.scene.roomName}");
+                        break;
+                    }
+                }
+            }
+            // For completed rooms with no recorded actions or invalid actions, create fake buy actions for all owned decor
+            if ((rr.actions.Count == 0 || hasInvalidActions) && this.scene.roomBackend.isPassed)
             {
                 rr.initialStates.Clear();
+                rr.actions.Clear(); // clear invalid actions
                 foreach (var vob in this.scene.visualObjectBehaviours)
                 {
                     var initialState = new InitialState();
@@ -1111,13 +1126,11 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                     initialState.variationIndex = 0;
                     rr.initialStates.Add(initialState);
                 }
-                // keep order consistent with scene list and group index
+                // sort by groupIndex ascending, then by name within groups
                 var ordered = new List<VisualObjectBehaviour>(this.scene.visualObjectBehaviours);
                 ordered.Sort((a, b) =>
                 {
-                    int ga = a.visualObject.sceneObjectInfo.groupIndex;
-                    int gb = b.visualObject.sceneObjectInfo.groupIndex;
-                    int cmp = ga.CompareTo(gb);
+                    int cmp = a.visualObject.sceneObjectInfo.groupIndex.CompareTo(b.visualObject.sceneObjectInfo.groupIndex);
                     if (cmp != 0) return cmp;
                     return string.Compare(a.name, b.name, StringComparison.OrdinalIgnoreCase);
                 });
@@ -1128,7 +1141,7 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                     var action = new ReplayAction();
                     action.type = "buy";
                     action.target = vob.visualObject.name.ToLower();
-                    action.variationIndex = vob.visualObject.ownedVariationIndex;
+                    action.variationIndex = Mathf.Clamp(vob.visualObject.ownedVariationIndex, 0, vob.visualObject.variations.Count - 1);
                     action.time = index * 2.0f; // 2 seconds spacing
                     rr.actions.Add(action);
                     index++;
@@ -1230,6 +1243,7 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                     if (act.type == "buy")
                     {
                         vb2.visualObject.isOwned = true;
+                        vb2.visualObject.ownedVariationIndex = Mathf.Clamp(act.variationIndex, 0, vb2.visualObject.variations.Count - 1);
                         vb2.SetVisualState();
                         this.scene.AnimationForVisualBehaviour(vb2); // trigger animation like real purchase
                         this.visualObjectParticles.CreateParticles(VisualObjectParticles.PositionType.BuySuccess, this.scene.rootTransform.gameObject, vb2);
@@ -1237,7 +1251,7 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                     }
                     else if (act.type == "change_variation")
                     {
-                        vb2.visualObject.ownedVariationIndex = act.variationIndex;
+                        vb2.visualObject.ownedVariationIndex = Mathf.Clamp(act.variationIndex, 0, vb2.visualObject.variations.Count - 1);
                         vb2.SetVisualState();
                         this.scene.AnimationForVisualBehaviour(vb2); // trigger animation like real variation change
                         this.visualObjectParticles.CreateParticles(VisualObjectParticles.PositionType.ChangeSuccess, this.scene.rootTransform.gameObject, vb2);
@@ -1265,12 +1279,12 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                                 if (remaining.type == "buy")
                                 {
                                     vbRem.visualObject.isOwned = true;
-                                    vbRem.visualObject.ownedVariationIndex = remaining.variationIndex;
+                                    vbRem.visualObject.ownedVariationIndex = Mathf.Clamp(remaining.variationIndex, 0, vbRem.visualObject.variations.Count - 1);
                                     vbRem.SetVisualState();
                                 }
                                 else if (remaining.type == "change_variation")
                                 {
-                                    vbRem.visualObject.ownedVariationIndex = remaining.variationIndex;
+                                    vbRem.visualObject.ownedVariationIndex = Mathf.Clamp(remaining.variationIndex, 0, vbRem.visualObject.variations.Count - 1);
                                     vbRem.SetVisualState();
                                 }
                             }
