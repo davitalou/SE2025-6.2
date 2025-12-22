@@ -6,7 +6,7 @@ return [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
             'username' => 'root',
-            'password' => '',
+            'password' => 'hieuk21c',
             'charset' => 'utf8',
         ],
         'mailer' => [
