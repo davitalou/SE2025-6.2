@@ -49,8 +49,9 @@ app.use((err, req, res, next) => {
 
 // Khởi động server
 const PORT = process.env.PORT || config.port || 3001;
-app.listen(PORT, () => {
-  console.log(`${config.id || "app-backend-api"} running on port ${PORT}`);
+const HOST = process.env.HOST || "0.0.0.0";
+app.listen(PORT, HOST, () => {
+  console.log(`${config.id || "app-backend-api"} running on ${HOST}:${PORT}`);
   console.log("Common params loaded:", commonParams.adminEmail);
-  console.log(`API endpoints start at http://localhost:${PORT}/api/site`);
+  console.log(`API endpoints start at http://${HOST === "0.0.0.0" ? "localhost" : HOST}:${PORT}/api/site`);
 });

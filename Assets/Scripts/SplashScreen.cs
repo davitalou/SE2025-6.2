@@ -91,6 +91,7 @@ public class SplashScreen : MonoBehaviour
 			case 0:
 				this._003C_003E1__state = -1;
 				this._003C_003E8__1 = new SplashScreen._003C_003Ec__DisplayClass6_0();
+				this._003CtosShown_003E5__4 = false;
 				GGUtil.SetFill(splashScreen.progressBarSprite, 0f);
 				this._003C_003E8__1.nav = NavigationManager.instance;
 				this._003C_003E2__current = null;
@@ -100,7 +101,8 @@ public class SplashScreen : MonoBehaviour
 				this._003C_003E1__state = -1;
 				this._003CasyncOperation_003E5__2 = SceneManager.LoadSceneAsync(splashScreen.sceneName);
 				this._003CneedsToShowTermsOfService_003E5__3 = (splashScreen.showTermsOfServiceDialog && !GGPlayerSettings.instance.Model.acceptedTermsOfService);
-				this._003CasyncOperation_003E5__2.allowSceneActivation = !this._003CneedsToShowTermsOfService_003E5__3;
+				// Block scene activation until (auth completed) AND (terms done if required)
+				this._003CasyncOperation_003E5__2.allowSceneActivation = false;
 				this._003C_003E8__1.termsOfServiceDone = false;
 				goto IL_194;
 			case 2:
@@ -131,22 +133,31 @@ public class SplashScreen : MonoBehaviour
 				return false;
 			}
 			GGUtil.SetFill(splashScreen.progressBarSprite, this._003CasyncOperation_003E5__2.progress);
-			if (this._003CasyncOperation_003E5__2.allowSceneActivation || this._003CasyncOperation_003E5__2.progress < 0.9f)
+			if (this._003CasyncOperation_003E5__2.progress < 0.9f)
 			{
 				goto IL_17D;
 			}
-			if (this._003CneedsToShowTermsOfService_003E5__3)
+			bool authDone = AuthState.IsLoggedIn;
+			if (this._003CneedsToShowTermsOfService_003E5__3 && !this._003C_003E8__1.termsOfServiceDone)
 			{
-				TermsOfServiceDialog @object = this._003C_003E8__1.nav.GetObject<TermsOfServiceDialog>();
-				Action<bool> onComplete;
-				if ((onComplete = this._003C_003E8__1._003C_003E9__0) == null)
+				if (!this._003CtosShown_003E5__4)
 				{
-					onComplete = (this._003C_003E8__1._003C_003E9__0 = new Action<bool>(this._003C_003E8__1._003CDoLoadFirstScene_003Eb__0));
+					this._003CtosShown_003E5__4 = true;
+					TermsOfServiceDialog @object = this._003C_003E8__1.nav.GetObject<TermsOfServiceDialog>();
+					Action<bool> onComplete;
+					if ((onComplete = this._003C_003E8__1._003C_003E9__0) == null)
+					{
+						onComplete = (this._003C_003E8__1._003C_003E9__0 = new Action<bool>(this._003C_003E8__1._003CDoLoadFirstScene_003Eb__0));
+					}
+					@object.Show(onComplete);
 				}
-				@object.Show(onComplete);
 				goto IL_164;
 			}
-			goto IL_171;
+			if (authDone && (!this._003CneedsToShowTermsOfService_003E5__3 || this._003C_003E8__1.termsOfServiceDone))
+			{
+				goto IL_171;
+			}
+			goto IL_17D;
 		}
 
 		object IEnumerator<object>.Current
@@ -184,5 +195,7 @@ public class SplashScreen : MonoBehaviour
 		private AsyncOperation _003CasyncOperation_003E5__2;
 
 		private bool _003CneedsToShowTermsOfService_003E5__3;
+
+		private bool _003CtosShown_003E5__4;
 	}
 }

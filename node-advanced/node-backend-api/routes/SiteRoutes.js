@@ -20,6 +20,7 @@ import {
 
   showResetPasswordPage,
   resetPassword,
+  changePassword,
 
   showErrorPage,
   contact
@@ -58,6 +59,9 @@ router.post("/forgot-password", requestPasswordReset);
 // Reset Password
 router.get("/reset-password/:token", showResetPasswordPage);
 router.post("/reset-password/:token", resetPassword);
+
+// Change Password
+router.post("/change-password", verifyToken, changePassword);
 
 // Error
 router.get("/error", showErrorPage);

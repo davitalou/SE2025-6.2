@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
+import { Op } from "sequelize";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -42,24 +43,33 @@ export const showLoginPage = (_req, res) => {
 /* LOGIN PROCESS */
 export const login = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, email, identifier, password } = req.body;
 
-    if (!username || !password) {
-      return res.status(400).json({ success: false, message: "Please enter username and password" });
+    // identifier allows login with either username or email in one field
+    const loginField = identifier || username || email;
+
+    if (!loginField || !password) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Please enter username/email and password" });
     }
 
-    const user = await User.findOne({ where: { username } });
+    const user = await User.findOne({
+      where: {
+        [Op.or]: [{ username: loginField }, { email: loginField }]
+      }
+    });
     if (!user) {
-      return res.status(404).json({ success: false, message: "User not found" });
+      return res.status(404).json({ success: false, message: "Sai ten dang nhap hoac mat khau" });
     }
 
     if (user.status !== 10) {
-      return res.status(403).json({ success: false, message: "Email not verified" });
+      return res.status(403).json({ success: false, message: "Chua xac thuc email" });
     }
 
     const valid = await bcrypt.compare(password, user.password_hash);
     if (!valid) {
-      return res.status(400).json({ success: false, message: "Incorrect password" });
+      return res.status(400).json({ success: false, message: "Sai ten dang nhap hoac mat khau" });
     }
 
     const token = buildToken(user);
@@ -213,19 +223,21 @@ export const requestPasswordReset = async (req, res) => {
       return res.status(404).json({ success: false, message: "Email not found" });
     }
 
-    const token = crypto.randomBytes(32).toString("hex");
-    user.password_reset_token = token;
+    // Generate a new password immediately and email it
+    const newPassword = crypto.randomBytes(6).toString("base64"); // ~8 chars
+    user.password_hash = newPassword;
+    user.password_reset_token = null;
     await user.save();
 
     await sendMail({
       to: email,
-      subject: "Reset Password",
+      subject: "Reset password thành công",
       data: {
-        html: `Click link to reset: <a href="${req.protocol}://${req.get("host")}/api/site/reset-password/${token}">Reset</a>`
+        html: `<p>Reset password thành công. Password mới của bạn là: <strong>${newPassword}</strong></p>`
       }
     });
 
-    res.json({ success: true, message: "Password reset email sent" });
+    res.json({ success: true, message: "Password reset successful", password: newPassword });
   } catch (err) {
     res.status(500).json({ success: false, message: "Failed to request password reset" });
   }
@@ -233,17 +245,16 @@ export const requestPasswordReset = async (req, res) => {
 
 /* RESET PASSWORD PAGE (info) */
 export const showResetPasswordPage = (req, res) => {
-  res.json({
-    success: true,
-    message: "Reset password endpoint. POST new password.",
-    token: req.params.token
+  res.status(400).json({
+    success: false,
+    message: "Link reset không còn sử dụng. Vui lòng dùng chức năng Quên mật khẩu để nhận mật khẩu mới."
   });
 };
 
 /* RESET PASSWORD PROCESS */
 export const resetPassword = async (req, res) => {
   try {
-    const { password } = req.body;
+    let { password } = req.body;
     const token = req.params.token;
 
     const user = await User.findOne({ where: { password_reset_token: token } });
@@ -251,11 +262,35 @@ export const resetPassword = async (req, res) => {
       return res.status(400).json({ success: false, message: "Invalid token" });
     }
 
+    // If client does not provide a password, generate one and return/log it.
+    if (!password) {
+      password = crypto.randomBytes(6).toString("base64"); // ~8 chars
+    }
+
     user.password_hash = password;
     user.password_reset_token = null;
     await user.save();
 
-    res.json({ success: true, message: "Password reset successful" });
+    console.log(`New password: ${password}`);
+
+    // Send confirmation email with the new password
+    try {
+      await sendMail({
+        to: user.email,
+        subject: "Reset password thành công",
+        data: {
+          html: `<p>Reset password thành công.</p><p>Password mới của bạn là: <strong>${password}</strong></p>`
+        }
+      });
+    } catch (mailErr) {
+      console.error("Failed to send reset confirmation email", mailErr);
+    }
+
+    res.json({
+      success: true,
+      message: "Password reset successful",
+      password
+    });
   } catch (err) {
     res.status(500).json({ success: false, message: "Cannot reset password" });
   }
@@ -321,6 +356,40 @@ export const updateProfile = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: "Failed to update profile" });
+  }
+};
+
+/* CHANGE PASSWORD (AUTH) */
+export const changePassword = async (req, res) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ success: false, message: "Not authenticated" });
+    }
+    const { oldPassword, newPassword, confirmPassword } = req.body;
+    if (!oldPassword || !newPassword || !confirmPassword) {
+      return res.status(400).json({ success: false, message: "Missing fields" });
+    }
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ success: false, message: "Passwords do not match" });
+    }
+    if (newPassword.length < 6) {
+      return res.status(400).json({ success: false, message: "Password must be at least 6 characters" });
+    }
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+    const valid = await bcrypt.compare(oldPassword, user.password_hash);
+    if (!valid) {
+      return res.status(400).json({ success: false, message: "Incorrect old password" });
+    }
+    user.password_hash = newPassword;
+    await user.save();
+    return res.json({ success: true, message: "Password changed successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Failed to change password" });
   }
 };
 
