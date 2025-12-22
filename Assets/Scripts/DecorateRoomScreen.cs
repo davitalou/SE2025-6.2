@@ -129,6 +129,8 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
     {
         GGUtil.SetActive(this.widgetsToHide, false);
         this.loadingSceneStyle.Apply();
+        // Hide overlay buttons while loading so they don't float over the loading screen
+        this.HideOverlayButtons(true);
         this.updateEnumerator = this.DoLoadScene(room);
     }
 
@@ -145,6 +147,7 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
     {
         GGUtil.SetActive(this.widgetsToHide, false);
         this.retryLoadingStyle.Apply();
+        this.HideOverlayButtons(true);
         this.speachBubblePool.Clear();
         this.speachBubblePool.HideNotUsed();
         this.visualItemsPool.Clear();
@@ -288,6 +291,10 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                 {
                     active = (scene != null && scene.roomBackend != null && scene.roomBackend.isPassed);
                     UnityEngine.Debug.Log($"Replay button active: {active}, isPassed: {scene?.roomBackend?.isPassed}, roomName: {scene?.roomName}");
+                    if (active)
+                    {
+                        replayButtonObj = uiitemSetup.widget != null ? uiitemSetup.widget.gameObject : null;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -359,6 +366,8 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         {
             GGUtil.SetActive(this.skipReplayButton.gameObject, false);
         }
+        // Restore overlay buttons once the scene is ready
+        this.HideOverlayButtons(false);
     }
 
     private IEnumerator DoShowCharacterAnimation(List<ChangeAnimationArguments> animationParamsList, Action onComplete = null)
@@ -477,7 +486,6 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                     ReplayAction act = new ReplayAction();
                     act.type = "buy";
                     act.target = visualObjectBehaviour.name.ToLower();
-                    act.time = Time.realtimeSinceStartup;
                     if (this.scene != null)
                     {
                         rm.RecordAction(this.scene.roomName, act);
@@ -541,7 +549,6 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                     act2.type = "change_variation";
                     act2.target = visualObjectBehaviour.name.ToLower();
                     act2.variationIndex = visualObjectBehaviour.visualObject.ownedVariationIndex;
-                    act2.time = Time.realtimeSinceStartup;
                     rm2.RecordAction(this.scene.roomName, act2);
                 }
             }
@@ -551,6 +558,7 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
             }
         }
         this.InitScene(this.scene, false);
+        this.HideOverlayButtons(false);
     }
 
     private void OnCompleteRoom()
@@ -585,6 +593,7 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         uiItem.HideButton();
         uiItem.ShowMarkers();
         GGUtil.SetActive(this.controlWidgets, false);
+        this.HideOverlayButtons(true);
         this.variationPanel.Show(this, uiItem, initParams);
         if (initParams.isPurchased)
         {
@@ -606,6 +615,7 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         this.confirmPurchasePanel.Show(uiItem, this);
         this.scene.ZoomIn(uiItem.visualObjectBehaviour);
         GGUtil.SetActive(this.controlWidgets, false);
+        this.HideOverlayButtons(true);
         this.scene.AnimateCharacterAlphaTo(0f);
         GGSoundSystem.Play(GGSoundSystem.SFXType.FlyIn);
     }
@@ -909,7 +919,6 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                 ReplayAction act = new ReplayAction();
                 act.type = "buy";
                 act.target = uiItem.visualObjectBehaviour.name.ToLower();
-                act.time = Time.realtimeSinceStartup;
                 rm.RecordAction(this.scene.roomName, act);
             }
         }
@@ -934,6 +943,7 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
     public void ConfirmPurchasePanelCallback_OnClosed()
     {
         this.InitScene(this.scene, false);
+        this.HideOverlayButtons(false);
     }
 
     public void ButtonCallback_OnLivesClicked()
@@ -972,9 +982,94 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
     [SerializeField]
     private Button skipReplayButton;
 
+    // Overlay control references
+    private GameObject replayButtonObj;
+    private GameObject accountToggleObj;
+    private bool replayPrevVisible;
+    private bool accountPrevVisible;
+    private bool overlayHidden;
+
     public void SkipReplay()
     {
         isSkipping = true;
+    }
+
+    private void HideOverlayButtons(bool hide)
+    {
+        // cache references
+        if (replayButtonObj == null)
+        {
+            for (int i = 0; i < this.uiItemSetups.Count; i++)
+            {
+                if (this.uiItemSetups[i].name == DecorateRoomScreen.UIItemName.ReplayButton)
+                {
+                    replayButtonObj = this.uiItemSetups[i].widget != null ? this.uiItemSetups[i].widget.gameObject : null;
+                    break;
+                }
+            }
+            if (replayButtonObj == null)
+            {
+                // fallback search including inactive
+                foreach (var t in Resources.FindObjectsOfTypeAll<Transform>())
+                {
+                    if (t.name == "ReplayButton")
+                    {
+                        replayButtonObj = t.gameObject;
+                        break;
+                    }
+                }
+            }
+        }
+        if (accountToggleObj == null)
+        {
+            foreach (var t in Resources.FindObjectsOfTypeAll<Transform>())
+            {
+                if (t.name == "AccountToggle")
+                {
+                    accountToggleObj = t.gameObject;
+                    break;
+                }
+            }
+        }
+
+        if (hide)
+        {
+            if (overlayHidden) return; // already hidden, keep previous states
+            overlayHidden = true;
+            replayPrevVisible = replayButtonObj != null ? replayButtonObj.activeSelf : true;
+            accountPrevVisible = accountToggleObj != null ? accountToggleObj.activeSelf : true;
+            if (replayButtonObj != null) replayButtonObj.SetActive(false);
+            if (accountToggleObj != null) accountToggleObj.SetActive(false);
+        }
+        else
+        {
+            overlayHidden = false;
+            // refresh references if they were null earlier
+            if (replayButtonObj == null)
+            {
+                foreach (var t in Resources.FindObjectsOfTypeAll<Transform>())
+                {
+                    if (t.name == "ReplayButton")
+                    {
+                        replayButtonObj = t.gameObject;
+                        break;
+                    }
+                }
+            }
+            if (accountToggleObj == null)
+            {
+                foreach (var t in Resources.FindObjectsOfTypeAll<Transform>())
+                {
+                    if (t.name == "AccountToggle")
+                    {
+                        accountToggleObj = t.gameObject;
+                        break;
+                    }
+                }
+            }
+            if (replayButtonObj != null) replayButtonObj.SetActive(replayPrevVisible);
+            if (accountToggleObj != null) accountToggleObj.SetActive(accountPrevVisible);
+        }
     }
 
     public void ButtonCallback_OnReplay()
@@ -1007,39 +1102,39 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
             // For completed rooms with no recorded actions, create fake buy actions for all owned decor
             if (rr.actions.Count == 0 && this.scene.roomBackend.isPassed)
             {
-                // Reset initial states to empty for full replay from start
                 rr.initialStates.Clear();
-                // Set all decor to not owned in initial states
                 foreach (var vob in this.scene.visualObjectBehaviours)
                 {
                     var initialState = new InitialState();
                     initialState.objectName = vob.name.ToLower();
-                    initialState.isOwned = false; // Start with no decor owned
+                    initialState.isOwned = false;
                     initialState.variationIndex = 0;
                     rr.initialStates.Add(initialState);
                 }
-                // Collect owned decor and reverse the order for reverse replay
-                List<VisualObjectBehaviour> ownedDecor = new List<VisualObjectBehaviour>();
-                foreach (var vob in this.scene.visualObjectBehaviours)
+                // keep order consistent with scene list and group index
+                var ordered = new List<VisualObjectBehaviour>(this.scene.visualObjectBehaviours);
+                ordered.Sort((a, b) =>
                 {
-                    if (vob.visualObject.isOwned)
-                    {
-                        ownedDecor.Add(vob);
-                    }
-                }
-                ownedDecor.Reverse(); // Reverse to play from last to first
+                    int ga = a.visualObject.sceneObjectInfo.groupIndex;
+                    int gb = b.visualObject.sceneObjectInfo.groupIndex;
+                    int cmp = ga.CompareTo(gb);
+                    if (cmp != 0) return cmp;
+                    return string.Compare(a.name, b.name, StringComparison.OrdinalIgnoreCase);
+                });
                 int index = 0;
-                foreach (var vob in ownedDecor)
+                foreach (var vob in ordered)
                 {
+                    if (!vob.visualObject.isOwned) continue;
                     var action = new ReplayAction();
                     action.type = "buy";
-                    action.target = vob.visualObject.name;
+                    action.target = vob.visualObject.name.ToLower();
                     action.variationIndex = vob.visualObject.ownedVariationIndex;
-                    action.time = index * 2.0f; // 2 seconds delay between each decor placement
+                    action.time = index * 2.0f; // 2 seconds spacing
                     rr.actions.Add(action);
                     index++;
                 }
             }
+            // keep insertion order (recorded sequence) rather than sorting, to preserve chosen order
             if (rr.actions.Count == 0)
             {
                 UnityEngine.Debug.Log($"No replay available for room {this.scene.roomName}: no actions after fake generation");
@@ -1107,7 +1202,8 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
             UnityEngine.Debug.LogException(ex);
         }
         yield return null;
-        float prevTime = rr.actions.Count > 0 ? rr.actions[0].time : Time.realtimeSinceStartup;
+        // actions assumed sorted by time
+        float prevTime = rr.actions.Count > 0 ? rr.actions[0].time : 0f;
         for (int j = 0; j < rr.actions.Count; j++)
         {
             var act = rr.actions[j];
@@ -1203,6 +1299,7 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         isSkipping = false;
         isReplaying = false;
         GGUtil.SetActive(this.controlWidgets, true);
+        this.HideOverlayButtons(false);
         yield break;
     }
 

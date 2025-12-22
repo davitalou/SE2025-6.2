@@ -396,7 +396,16 @@ public class AccountMenuOverlay : MonoBehaviour
     {
         while (true)
         {
-            root.SetActive(AuthState.IsLoggedIn);
+            // Chỉ hiện khi đã đăng nhập và đang ở màn trang trí (DecorateRoomScreen hiện diện)
+            bool inDecorateScreen = GameObject.FindObjectOfType<DecorateRoomScreen>() != null;
+            bool allow = AuthState.IsLoggedIn && inDecorateScreen;
+            root.SetActive(allow);
+            if (!allow)
+            {
+                if (panel != null) panel.SetActive(false);
+                if (changePasswordPanel != null) changePasswordPanel.SetActive(false);
+                if (blocker != null) blocker.SetActive(false);
+            }
             yield return new WaitForSeconds(1f);
         }
     }

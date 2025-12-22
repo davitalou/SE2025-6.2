@@ -140,6 +140,10 @@ public class ReplayManager : SingletonInit<ReplayManager>
             UnityEngine.Debug.Log("RecordAction aborted: empty room name or null action");
             return;
         }
+        if (!string.IsNullOrEmpty(action.target))
+        {
+            action.target = action.target.ToLowerInvariant();
+        }
         RoomReplay rr = GetReplay(roomName);
         if (rr == null)
         {
@@ -149,6 +153,9 @@ public class ReplayManager : SingletonInit<ReplayManager>
             rr.roomName = roomName;
             this.data.rooms.Add(rr);
         }
+        // force a deterministic order/time based on append order
+        float nextTime = (rr.actions.Count == 0) ? 0f : rr.actions[rr.actions.Count - 1].time + 1f;
+        action.time = nextTime;
         rr.actions.Add(action);
         UnityEngine.Debug.Log($"Recorded action, now has {rr.actions.Count} actions total");
         Save();
