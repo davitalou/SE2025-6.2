@@ -23,6 +23,7 @@ public class AccountMenuOverlay : MonoBehaviour
     private GameObject root;
     private GameObject panel;
     private GameObject changePasswordPanel;
+    private GameObject blocker;
     private Button toggleButton;
     private Text nameText;
     private Text emailText;
@@ -67,6 +68,24 @@ public class AccountMenuOverlay : MonoBehaviour
         var scaler = root.GetComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1920, 1080);
+
+        // Blocker to prevent interaction behind panels
+        blocker = CreateImage("AccountBlocker", root.transform, new Color(0, 0, 0, 0.35f));
+        Stretch(blocker.GetComponent<RectTransform>());
+        var blockerImg = blocker.GetComponent<Image>();
+        blockerImg.raycastTarget = true;
+        var blockerBtn = blocker.AddComponent<Button>();
+        var colors = blockerBtn.colors;
+        colors.normalColor = blockerImg.color;
+        colors.highlightedColor = blockerImg.color;
+        colors.pressedColor = blockerImg.color;
+        colors.selectedColor = blockerImg.color;
+        colors.disabledColor = blockerImg.color;
+        colors.colorMultiplier = 1f;
+        blockerBtn.colors = colors;
+        blockerBtn.transition = Selectable.Transition.ColorTint;
+        blockerBtn.onClick.AddListener(OnBlockerClick);
+        blocker.SetActive(false);
 
         // Toggle button (circular avatar-style) near Home button bottom-left
         toggleButton = CreateButton("AccountToggle", root.transform, "Tài khoản", new Vector2(160, 40), true);
@@ -262,6 +281,19 @@ public class AccountMenuOverlay : MonoBehaviour
         return txt;
     }
 
+    private GameObject CreateImage(string name, Transform parent, Color color)
+    {
+        var go = new GameObject(name, typeof(RectTransform), typeof(Image));
+        go.transform.SetParent(parent, false);
+        var img = go.GetComponent<Image>();
+        img.color = color;
+        var rect = go.GetComponent<RectTransform>();
+        rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
+        rect.sizeDelta = new Vector2(100, 100);
+        return go;
+    }
+
     private void Stretch(RectTransform rect)
     {
         rect.anchorMin = Vector2.zero;
@@ -285,7 +317,9 @@ public class AccountMenuOverlay : MonoBehaviour
             panel.SetActive(false);
             return;
         }
-        panel.SetActive(!panel.activeSelf);
+        bool show = !panel.activeSelf;
+        panel.SetActive(show);
+        if (blocker != null) blocker.SetActive(show);
         RefreshTexts();
     }
 
@@ -331,6 +365,7 @@ public class AccountMenuOverlay : MonoBehaviour
     {
         AuthState.Clear();
         panel.SetActive(false);
+        if (blocker != null) blocker.SetActive(false);
         root.SetActive(false);
         EmailAuthBootstrap.ShowAuth();
     }
@@ -339,6 +374,7 @@ public class AccountMenuOverlay : MonoBehaviour
     {
         if (panel != null) panel.SetActive(false);
         if (changePasswordPanel != null) changePasswordPanel.SetActive(true);
+        if (blocker != null) blocker.SetActive(true);
         if (cpStatusText != null) cpStatusText.text = "";
     }
 
@@ -436,6 +472,7 @@ public class AccountMenuOverlay : MonoBehaviour
                         confirmPasswordInput.text = "";
                         if (changePasswordPanel != null) changePasswordPanel.SetActive(false);
                         if (panel != null) panel.SetActive(true);
+                        if (blocker != null) blocker.SetActive(panel != null && panel.activeSelf);
                         yield break;
                     }
                     string msg = resp != null ? resp.message : respText;
@@ -466,5 +503,18 @@ public class AccountMenuOverlay : MonoBehaviour
     {
         public bool success;
         public string message;
+    }
+
+    private void OnBlockerClick()
+    {
+        if (changePasswordPanel != null && changePasswordPanel.activeSelf)
+        {
+            changePasswordPanel.SetActive(false);
+            if (panel != null) panel.SetActive(true);
+            if (blocker != null) blocker.SetActive(panel != null && panel.activeSelf);
+            return;
+        }
+        if (panel != null) panel.SetActive(false);
+        if (blocker != null) blocker.SetActive(false);
     }
 }
