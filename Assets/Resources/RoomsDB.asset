@@ -31,7 +31,7 @@ MonoBehaviour:
         hours: 2
     isOnlyForEditor: 0
     remove: 0
-    totalStarsInRoom: 36
+    totalStarsInRoom: 7
     editorAssetPath: Assets/Art_HomeDesign/Rooms/MyRoom/MyRoom.unity
   - name: Veranda
     sceneName: Room0090_Veranda_First
