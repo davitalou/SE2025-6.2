@@ -329,6 +329,12 @@ public class AccountMenuOverlay : MonoBehaviour
         if (emailText != null) emailText.text = "Email: " + (AuthState.Email ?? "-");
     }
 
+    // Allow external callers to force refresh after profile updates
+    public void RefreshUIFromAuthState()
+    {
+        RefreshTexts();
+    }
+
     private Text CreateSmallLabel(string name, Transform parent, string content)
     {
         var go = new GameObject(name, typeof(RectTransform), typeof(Text));

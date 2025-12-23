@@ -13,6 +13,18 @@ public static class AuthState
         Email = email;
     }
 
+    public static void UpdateProfile(string username = null, string email = null)
+    {
+        if (!string.IsNullOrEmpty(username))
+        {
+            Username = username;
+        }
+        if (!string.IsNullOrEmpty(email))
+        {
+            Email = email;
+        }
+    }
+
     public static void Clear()
     {
         IsLoggedIn = false;

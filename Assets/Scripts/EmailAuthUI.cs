@@ -224,6 +224,11 @@ public class EmailAuthUI : MonoBehaviour
             {
                 SetStatus("Thành công! Đang đăng nhập...");
                 AuthState.MarkLoggedIn(response.token, response.user != null ? response.user.username : null, response.user != null ? response.user.email : null);
+                // Nếu email chưa có (login bằng username), gọi /me để bổ sung
+                if (string.IsNullOrEmpty(AuthState.Email))
+                {
+                    StartCoroutine(FetchProfile(AuthState.Token));
+                }
                 // Ẩn UI khi đăng nhập thành công
                 var root = transform.root != null ? transform.root.gameObject : gameObject;
                 root.SetActive(false);
@@ -313,6 +318,33 @@ public class EmailAuthUI : MonoBehaviour
         if (statusText != null)
         {
             statusText.text = message;
+        }
+    }
+
+    private IEnumerator FetchProfile(string token)
+    {
+        if (string.IsNullOrEmpty(token)) yield break;
+        using (var req = UnityWebRequest.Get($"{GetBaseUrl()}/me"))
+        {
+            req.SetRequestHeader("Authorization", $"Bearer {token}");
+            yield return req.SendWebRequest();
+            if (req.result == UnityWebRequest.Result.Success)
+            {
+                try
+                {
+                    var resp = JsonUtility.FromJson<AuthResponse>(req.downloadHandler.text);
+                    if (resp != null && resp.user != null)
+                    {
+                        AuthState.UpdateProfile(resp.user.username, resp.user.email);
+                        var overlay = GameObject.FindObjectOfType<AccountMenuOverlay>();
+                        if (overlay != null) overlay.RefreshUIFromAuthState();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    UnityEngine.Debug.LogException(ex);
+                }
+            }
         }
     }
 
