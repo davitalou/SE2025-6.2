@@ -132,7 +132,7 @@ public class EmailAuthBootstrap : MonoBehaviour
         var auth = dialog.AddComponent<EmailAuthUI>();
         // TODO: Đặt đúng IP LAN của máy chạy backend khi build mobile, ví dụ: http://192.168.1.10:3001/api/site
         auth.apiBaseUrlEditor = "http://localhost:3001/api/site";
-        auth.apiBaseUrlRuntime = "http://192.168.1.8:3001/api/site";
+        auth.apiBaseUrlRuntime = "http://192.168.32.103:3001/api/site";
         auth.usernameInput = username;
         auth.emailInput = email;
         auth.passwordInput = password;

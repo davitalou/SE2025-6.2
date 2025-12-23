@@ -18,7 +18,7 @@ public class AccountMenuOverlay : MonoBehaviour
     [Header("API")]
     // Đặt URL cho Editor và Runtime (thiết bị). Editor có thể dùng localhost, Runtime dùng IP LAN.
     [SerializeField] private string apiBaseUrlEditor = "http://localhost:3001/api/site";
-    [SerializeField] private string apiBaseUrlRuntime = "http://192.168.1.8:3001/api/site";
+    [SerializeField] private string apiBaseUrlRuntime = "http://192.168.32.103:3001/api/site";
 
     private GameObject root;
     private GameObject panel;
@@ -327,6 +327,12 @@ public class AccountMenuOverlay : MonoBehaviour
     {
         if (nameText != null) nameText.text = "User: " + (AuthState.Username ?? "-");
         if (emailText != null) emailText.text = "Email: " + (AuthState.Email ?? "-");
+    }
+
+    // Allow external callers to force refresh after profile updates
+    public void RefreshUIFromAuthState()
+    {
+        RefreshTexts();
     }
 
     private Text CreateSmallLabel(string name, Transform parent, string content)
