@@ -30,6 +30,14 @@ public class RoomsDB : ScriptableObjectSingleton<RoomsDB>
                     this.rooms_.Add(room);
                 }
             }
+            // Đưa MyMatch3 lên đầu danh sách (nếu có)
+            int mmIndex = this.rooms_.FindIndex(r => string.Equals(r.name, "MyMatch3", StringComparison.OrdinalIgnoreCase) || string.Equals(r.displayName, "MyMatch3", StringComparison.OrdinalIgnoreCase));
+            if (mmIndex > 0)
+            {
+                var myMatch = this.rooms_[mmIndex];
+                this.rooms_.RemoveAt(mmIndex);
+                this.rooms_.Insert(0, myMatch);
+            }
             return this.rooms_;
         }
     }

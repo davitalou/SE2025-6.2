@@ -375,8 +375,29 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         {
             GGUtil.SetActive(this.skipReplayButton.gameObject, false);
         }
+        // Ensure MyMatch3 button stays at bottom-right (runtime safety)
+        this.RepositionMyMatch3Button();
         // Restore overlay buttons once the scene is ready
         this.HideOverlayButtons(false);
+    }
+
+    private void RepositionMyMatch3Button()
+    {
+        try
+        {
+            var go = GameObject.Find("MyMatch3");
+            if (go == null) return;
+            var rt = go.GetComponent<RectTransform>();
+            if (rt == null) return;
+            rt.anchorMin = new Vector2(1f, 0f);
+            rt.anchorMax = new Vector2(1f, 0f);
+            rt.pivot = new Vector2(1f, 0f);
+            rt.anchoredPosition = new Vector2(-220f, 40f);
+        }
+        catch (Exception ex)
+        {
+            UnityEngine.Debug.LogException(ex);
+        }
     }
 
     private IEnumerator DoShowCharacterAnimation(List<ChangeAnimationArguments> animationParamsList, Action onComplete = null)

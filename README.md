@@ -52,7 +52,7 @@ Phát triển một game Match-3 hoàn chỉnh, cho phép người chơi tương
 ### 3.3 Database
 
 Lưu trữ dữ liệu người chơi và trạng thái game (cấu hình trong backend) 
-![alt text](image.png)
+![alt text](image-2.png)
 
 ## 4. Video Demo Sản Phẩm
 
