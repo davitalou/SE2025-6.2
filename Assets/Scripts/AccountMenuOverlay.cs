@@ -18,7 +18,7 @@ public class AccountMenuOverlay : MonoBehaviour
     [Header("API")]
     // Đặt URL cho Editor và Runtime (thiết bị). Editor có thể dùng localhost, Runtime dùng IP LAN.
     [SerializeField] private string apiBaseUrlEditor = "http://localhost:3001/api/site";
-    [SerializeField] private string apiBaseUrlRuntime = "http://192.168.32.104:3001/api/site";
+    [SerializeField] private string apiBaseUrlRuntime = "http://192.168.32.103:3001/api/site";
 
     private GameObject root;
     private GameObject panel;

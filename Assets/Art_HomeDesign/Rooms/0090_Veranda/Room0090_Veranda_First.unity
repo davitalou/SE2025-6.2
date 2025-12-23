@@ -16422,6 +16422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668741073}
   variations: []
   allVariations:
@@ -16592,6 +16594,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740917}
@@ -17275,6 +17279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668741047}
   variations:
   - {fileID: 1790424292668740922}
@@ -17427,6 +17433,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741077}
@@ -17797,6 +17805,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741099}
@@ -18471,6 +18481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740884}
@@ -18582,7 +18594,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - It feels so nice and relaxing with a plant!
-      groupIndex: 1
+      groupIndex: 3
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -18985,6 +18997,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741018}
@@ -19445,6 +19459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740944}
@@ -23118,7 +23134,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - Charming little lamp
-        groupIndex: 1
+        groupIndex: 4
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -23671,7 +23687,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - Wow! This looks so nice!
-        groupIndex: 1
+        groupIndex: 2
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -24463,7 +24479,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - It looks great!
-        groupIndex: 0
+        groupIndex: 1
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -24725,7 +24741,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - Beautiful flowers, I love them!
-        groupIndex: 0
+        groupIndex: 2
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -24897,7 +24913,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - Excellent choice!
-        groupIndex: 3
+        groupIndex: 2
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -25150,7 +25166,7 @@ MonoBehaviour:
           cost: 1
         autoSelect: 0
         toSayAfterOpen: []
-        groupIndex: -1
+        groupIndex: 0
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -25258,7 +25274,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - Nice and simple!
-        groupIndex: 0
+        groupIndex: 1
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -25386,7 +25402,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - A little bit of privacy! Looks lovely!
-        groupIndex: 2
+        groupIndex: 1
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -25860,6 +25876,9 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
+  overrideOffsetAndScale: 0
+  overrideOffsetPosition: {x: 0, y: 0, z: 0}
+  overrideOffsetScale: {x: 1, y: 1, z: 1}
   imagesFolder: 0
   backgroundColor: {r: 0, g: 0, b: 0, a: 1}
   showCollisions: 0
@@ -25976,6 +25995,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741074}
@@ -26051,7 +26072,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Excellent choice!
-      groupIndex: 3
+      groupIndex: 2
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -26628,6 +26649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668741090}
   variations:
   - {fileID: 1790424292668740975}
@@ -26739,7 +26762,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - It looks great!
-      groupIndex: 0
+      groupIndex: 1
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -26946,6 +26969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668741093}
   variations:
   - {fileID: 1790424292668741087}
@@ -27025,7 +27050,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Nice and simple!
-      groupIndex: 0
+      groupIndex: 1
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -27245,6 +27270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740963}
   variations:
   - {fileID: 1790424292668740894}
@@ -27441,6 +27468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740914}
@@ -27811,6 +27840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741012}
@@ -28279,6 +28310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741055}
@@ -28356,7 +28389,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - A little bit of privacy! Looks lovely!
-      groupIndex: 2
+      groupIndex: 1
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -28462,6 +28495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741038}
@@ -28755,6 +28790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740978}
@@ -29557,6 +29594,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741089}
@@ -29697,6 +29736,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740895}
@@ -30300,6 +30341,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740878}
@@ -30904,6 +30947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741081}
@@ -31168,6 +31213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740940}
@@ -31366,6 +31413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740897}
@@ -31476,7 +31525,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Wow! This looks so nice!
-      groupIndex: 1
+      groupIndex: 2
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -31649,6 +31698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741031}
@@ -31761,7 +31812,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Charming little lamp
-      groupIndex: 1
+      groupIndex: 3
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -32096,6 +32147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740882}
@@ -32677,6 +32730,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741005}
@@ -32755,7 +32810,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Beautiful flowers, I love them!
-      groupIndex: 0
+      groupIndex: 2
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -33088,6 +33143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740997}
   variations: []
   allVariations:
@@ -33105,7 +33162,7 @@ MonoBehaviour:
         cost: 1
       autoSelect: 0
       toSayAfterOpen: []
-      groupIndex: -1
+      groupIndex: 1
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -33235,6 +33292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668741006}
@@ -34180,6 +34239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740961}

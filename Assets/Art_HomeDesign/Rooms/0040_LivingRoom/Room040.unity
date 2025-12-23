@@ -3227,7 +3227,7 @@ GameObject:
   - component: {fileID: 1790424290823246616}
   - component: {fileID: 1790424292668740844}
   m_Layer: 0
-  m_Name: tablesquare
+  m_Name: atablesquare
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14983,6 +14983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740794}
@@ -15094,7 +15096,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Nice and practical
-      groupIndex: -1
+      groupIndex: 3
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -15341,6 +15343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740859}
@@ -16336,6 +16340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740930}
   variations:
   - {fileID: 1790424292668740897}
@@ -18925,7 +18931,7 @@ MonoBehaviour:
           cost: 1
         autoSelect: 0
         toSayAfterOpen: []
-        groupIndex: -1
+        groupIndex: 3
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -19022,7 +19028,7 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-    - name: tablesquare
+    - name: atablesquare
       variations:
       - name: tablesquare_l1
         sprites:
@@ -19597,7 +19603,7 @@ MonoBehaviour:
           cost: 1
         autoSelect: 0
         toSayAfterOpen: []
-        groupIndex: -1
+        groupIndex: 3
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -20890,6 +20896,9 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
+  overrideOffsetAndScale: 0
+  overrideOffsetPosition: {x: 0, y: 0, z: 0}
+  overrideOffsetScale: {x: 1, y: 1, z: 1}
   imagesFolder: 0
   backgroundColor: {r: 0, g: 0, b: 0, a: 1}
   showCollisions: 1
@@ -20933,6 +20942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740920}
@@ -21416,6 +21427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740936}
@@ -21492,7 +21505,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Charming little lamp
-      groupIndex: -1
+      groupIndex: 3
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -21949,6 +21962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740795}
@@ -21959,7 +21974,7 @@ MonoBehaviour:
   - {fileID: 1790424292668740838}
   - {fileID: 1790424292668740888}
   visualObject:
-    name: tablesquare
+    name: atablesquare
     variations:
     - name: tablesquare_l1
       sprites:
@@ -22321,6 +22336,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740790}
   variations:
   - {fileID: 1790424292668740758}
@@ -22562,6 +22579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740839}
@@ -22778,6 +22797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740775}
@@ -22963,6 +22984,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740855}
@@ -23155,6 +23178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations: []
   allVariations: []
@@ -23457,6 +23482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740861}
@@ -23629,6 +23656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740819}
@@ -23785,6 +23814,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740791}
@@ -24064,6 +24095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740814}
@@ -24252,6 +24285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740904}
@@ -24573,6 +24608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740782}
@@ -25087,6 +25124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740781}
@@ -25345,6 +25384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740963}
@@ -25754,6 +25795,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740796}
@@ -26137,6 +26180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740879}
@@ -26358,6 +26403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740873}
@@ -26887,6 +26934,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740913}
   variations: []
   allVariations:
@@ -27001,6 +27050,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740885}
@@ -27474,6 +27525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740899}
@@ -27786,6 +27839,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740834}
   variations:
   - {fileID: 1790424292668740783}

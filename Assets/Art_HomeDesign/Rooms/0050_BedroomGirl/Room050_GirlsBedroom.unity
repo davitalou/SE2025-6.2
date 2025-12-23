@@ -5126,7 +5126,7 @@ GameObject:
   - component: {fileID: 1790424290823246721}
   - component: {fileID: 1790424292668740888}
   m_Layer: 0
-  m_Name: pouffebig
+  m_Name: apouffebig
   m_TagString: 
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14748,6 +14748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740833}
@@ -14932,6 +14934,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740854}
@@ -15165,6 +15169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740792}
@@ -15877,6 +15883,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740867}
@@ -16652,6 +16660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740913}
@@ -17257,6 +17267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740838}
@@ -17653,6 +17665,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740878}
@@ -19791,7 +19805,7 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-    - name: pouffebig
+    - name: apouffebig
       variations:
       - name: pouffebig_l1
         sprites:
@@ -23910,6 +23924,9 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
+  overrideOffsetAndScale: 0
+  overrideOffsetPosition: {x: 0, y: 0, z: 0}
+  overrideOffsetScale: {x: 1, y: 1, z: 1}
   imagesFolder: 0
   backgroundColor: {r: 0, g: 0, b: 0, a: 1}
   showCollisions: 0
@@ -23970,6 +23987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740902}
   variations:
   - {fileID: 1790424292668740937}
@@ -24178,6 +24197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740869}
@@ -24495,6 +24516,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740848}
@@ -24712,6 +24735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740868}
   variations:
   - {fileID: 1790424292668740763}
@@ -24960,6 +24985,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740958}
@@ -25272,6 +25299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740943}
@@ -25476,6 +25505,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740847}
   variations:
   - {fileID: 1790424292668740915}
@@ -26198,6 +26229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740894}
@@ -26583,6 +26616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740940}
@@ -26815,6 +26850,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740821}
@@ -27166,6 +27203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740837}
@@ -27520,6 +27559,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740959}
@@ -27530,7 +27571,7 @@ MonoBehaviour:
   - {fileID: 1790424292668740834}
   - {fileID: 1790424292668740861}
   visualObject:
-    name: pouffebig
+    name: apouffebig
     variations:
     - name: pouffebig_l1
       sprites:
@@ -27688,6 +27729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740815}
@@ -27937,6 +27980,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740759}
@@ -28182,6 +28227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740798}
@@ -28434,6 +28481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740840}
@@ -28695,6 +28744,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740892}
@@ -29154,6 +29205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740789}
@@ -30022,6 +30075,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740802}
@@ -30338,6 +30393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740751}
@@ -30672,6 +30729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740790}
@@ -30946,6 +31005,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740926}
   variations: []
   allVariations:
@@ -31016,6 +31077,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740927}

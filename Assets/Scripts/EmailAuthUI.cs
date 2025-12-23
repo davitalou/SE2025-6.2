@@ -10,7 +10,7 @@ public class EmailAuthUI : MonoBehaviour
     [Header("API")]
     // Đặt IP LAN của backend để dùng trên thiết bị thật; không dùng localhost trên mobile.
     [SerializeField] public string apiBaseUrlEditor = "http://localhost:3001/api/site";
-    [SerializeField] public string apiBaseUrlRuntime = "http://192.168.32.104:3001/api/site";
+    [SerializeField] public string apiBaseUrlRuntime = "http://192.168.32.103:3001/api/site";
 
     [Header("Form Inputs")]
     [SerializeField] public InputField usernameInput;

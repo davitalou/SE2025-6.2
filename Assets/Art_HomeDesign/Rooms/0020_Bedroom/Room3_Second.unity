@@ -8608,8 +8608,8 @@ Transform:
   - {fileID: 1790424290823246688}
   - {fileID: 1790424290823246537}
   - {fileID: 1790424290823246488}
-  - {fileID: 1790424290823246536}
   - {fileID: 1790424290823246543}
+  - {fileID: 1790424290823246536}
   - {fileID: 1790424290823246529}
   - {fileID: 1790424290823246515}
   - {fileID: 1790424290823246454}
@@ -14233,6 +14233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740806}
@@ -14401,6 +14403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740786}
@@ -14554,6 +14558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740869}
@@ -14830,6 +14836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740792}
@@ -15129,6 +15137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740868}
   variations:
   - {fileID: 1790424292668740758}
@@ -15427,6 +15437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740824}
   variations:
   - {fileID: 1790424292668740711}
@@ -15506,7 +15518,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Perfect!
-      groupIndex: 1
+      groupIndex: 0
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -15820,6 +15832,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740707}
@@ -15932,7 +15946,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Beautiful curtains!
-      groupIndex: 5
+      groupIndex: 3
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -16279,6 +16293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740837}
@@ -16389,7 +16405,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - The curtains frame the window nicely
-      groupIndex: 4
+      groupIndex: 3
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -16916,6 +16932,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740744}
@@ -17269,6 +17287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740846}
@@ -17587,6 +17607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740779}
@@ -17661,7 +17683,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Lovely throw!
-      groupIndex: 5
+      groupIndex: 3
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -19134,7 +19156,7 @@ MonoBehaviour:
         - bedheadboard
         price:
           currency: 2
-          cost: 2
+          cost: 3
         autoSelect: 0
         toSayAfterOpen:
         - Nice and vibrant!
@@ -19951,151 +19973,6 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
-    - name: bedbase
-      variations:
-      - name: bedbase_l1
-        sprites:
-        - spriteName: BEDBASE_L1
-          spritePath: 
-          isShadow: 0
-          totalWidth: 0
-          totalHeight: 0
-          left: 700
-          right: 1423
-          top: 980
-          bottom: 670
-          pivotPosition: {x: 1042.243, y: -849.6501, z: 6.920147}
-          depth: 4202
-          initialDepth: 4200
-        thumbnailName: 
-        thumbnailSprite: {fileID: 0}
-        hitboxTriangles: []
-      - name: bedbase_l2
-        sprites:
-        - spriteName: BEDBASE_L2
-          spritePath: 
-          isShadow: 0
-          totalWidth: 0
-          totalHeight: 0
-          left: 700
-          right: 1423
-          top: 980
-          bottom: 670
-          pivotPosition: {x: 1042.243, y: -849.6501, z: 6.920147}
-          depth: 4202
-          initialDepth: 4200
-        thumbnailName: 
-        thumbnailSprite: {fileID: 0}
-        hitboxTriangles: []
-      - name: bedbase_l3
-        sprites:
-        - spriteName: BEDBASE_L3
-          spritePath: 
-          isShadow: 0
-          totalWidth: 0
-          totalHeight: 0
-          left: 700
-          right: 1423
-          top: 980
-          bottom: 670
-          pivotPosition: {x: 1042.243, y: -849.6501, z: 6.920147}
-          depth: 4202
-          initialDepth: 4200
-        thumbnailName: 
-        thumbnailSprite: {fileID: 0}
-        hitboxTriangles: []
-      index: 9
-      sceneObjectInfo:
-        objectName: 
-        displayName: Bed
-        backwardDependencies: []
-        price:
-          currency: 2
-          cost: 1
-        autoSelect: 0
-        toSayAfterOpen:
-        - Looks really comfy
-        groupIndex: 0
-        isMarkersAbove: 0
-        thumbnailNamePrefix: 
-        iconSpriteName: 
-        animationType: 0
-        animationSettingsName: 
-        usedDashedLineForIconHandlePosition: 0
-        hideCharacterWhenSelectingVariations: 0
-        isVisualObjectOverriden: 0
-        objectOverride:
-          isSettingSaved: 0
-          visualObjectName: 
-          iconHandlePositionOffset: {x: 0, y: 0, z: 0}
-          iconHandlePositionScale: {x: 1, y: 1, z: 1}
-          iconHandleRotation: {x: 0, y: 0, z: 0}
-        sceneName: 
-      hitboxes: []
-      hitboxTriangles:
-      - depth: 0
-        planeZSetup:
-          dc: 29.14317
-          ac: 0.0009210429
-          bc: -0.02883814
-        p1: {x: 1094.256, y: -682.1287}
-        p2: {x: 1406.801, y: -741.2794}
-        p3: {x: 971.1484, y: -794.3184}
-      - depth: 0
-        planeZSetup:
-          dc: 25.74858
-          ac: -0.000921067
-          bc: -0.02681676
-        p1: {x: 1094.256, y: -682.1287}
-        p2: {x: 971.1484, y: -794.3184}
-        p3: {x: 728.9312, y: -711.6552}
-      - depth: 0
-        planeZSetup:
-          dc: 13.29979
-          ac: 0.008257168
-          bc: 0.0000770224
-        p1: {x: 729.3088, y: -836.5511}
-        p2: {x: 728.9312, y: -711.6552}
-        p3: {x: 971.1484, y: -794.3184}
-      - depth: 0
-        planeZSetup:
-          dc: 13.32084
-          ac: 0.008260982
-          bc: 0.00005518319
-        p1: {x: 729.3088, y: -836.5511}
-        p2: {x: 971.1484, y: -794.3184}
-        p3: {x: 971.8665, y: -965.9316}
-      - depth: 0
-        planeZSetup:
-          dc: 2.817941
-          ac: -0.002591081
-          bc: 0.000009775072
-        p1: {x: 971.8665, y: -965.9316}
-        p2: {x: 971.1484, y: -794.3184}
-        p3: {x: 1406.801, y: -741.2794}
-      - depth: 0
-        planeZSetup:
-          dc: 2.805177
-          ac: -0.002595573
-          bc: 0.00001847043
-        p1: {x: 971.8665, y: -965.9316}
-        p2: {x: 1406.801, y: -741.2794}
-        p3: {x: 1407.156, y: -883.0121}
-      hitboxesList: []
-      dashLines:
-      - points:
-        - {x: 1123.097, y: -789.6505}
-        - {x: 1450.449, y: -883.6302}
-        - {x: 964.1417, y: -978.4036}
-        - {x: 716.3303, y: -841.5706}
-      iconHandlePosition: {x: 1061.5, y: -825, z: 0}
-      hasDefaultVariation: 0
-      defaultVariation:
-        name: 
-        sprites: []
-        thumbnailName: 
-        thumbnailSprite: {fileID: 0}
-        hitboxTriangles: []
     - name: bedheadboard
       variations:
       - name: bedheadboard_l1
@@ -20405,7 +20282,7 @@ MonoBehaviour:
           p1: {x: 727.2649, y: -735.0566}
           p2: {x: 1085.142, y: -504.13}
           p3: {x: 1085.265, y: -703.0847}
-      index: 10
+      index: 9
       sceneObjectInfo:
         objectName: 
         displayName: Headboard
@@ -20698,6 +20575,151 @@ MonoBehaviour:
         - {x: 697.0391, y: -752.5733}
         - {x: 696.1962, y: -493.167}
       iconHandlePosition: {x: 902, y: -619, z: 0}
+      hasDefaultVariation: 0
+      defaultVariation:
+        name: 
+        sprites: []
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
+    - name: bedbase
+      variations:
+      - name: bedbase_l1
+        sprites:
+        - spriteName: BEDBASE_L1
+          spritePath: 
+          isShadow: 0
+          totalWidth: 0
+          totalHeight: 0
+          left: 700
+          right: 1423
+          top: 980
+          bottom: 670
+          pivotPosition: {x: 1042.243, y: -849.6501, z: 6.920147}
+          depth: 4202
+          initialDepth: 4200
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
+      - name: bedbase_l2
+        sprites:
+        - spriteName: BEDBASE_L2
+          spritePath: 
+          isShadow: 0
+          totalWidth: 0
+          totalHeight: 0
+          left: 700
+          right: 1423
+          top: 980
+          bottom: 670
+          pivotPosition: {x: 1042.243, y: -849.6501, z: 6.920147}
+          depth: 4202
+          initialDepth: 4200
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
+      - name: bedbase_l3
+        sprites:
+        - spriteName: BEDBASE_L3
+          spritePath: 
+          isShadow: 0
+          totalWidth: 0
+          totalHeight: 0
+          left: 700
+          right: 1423
+          top: 980
+          bottom: 670
+          pivotPosition: {x: 1042.243, y: -849.6501, z: 6.920147}
+          depth: 4202
+          initialDepth: 4200
+        thumbnailName: 
+        thumbnailSprite: {fileID: 0}
+        hitboxTriangles: []
+      index: 10
+      sceneObjectInfo:
+        objectName: 
+        displayName: Bed
+        backwardDependencies: []
+        price:
+          currency: 2
+          cost: 1
+        autoSelect: 0
+        toSayAfterOpen:
+        - Looks really comfy
+        groupIndex: 2
+        isMarkersAbove: 0
+        thumbnailNamePrefix: 
+        iconSpriteName: 
+        animationType: 0
+        animationSettingsName: 
+        usedDashedLineForIconHandlePosition: 0
+        hideCharacterWhenSelectingVariations: 0
+        isVisualObjectOverriden: 0
+        objectOverride:
+          isSettingSaved: 0
+          visualObjectName: 
+          iconHandlePositionOffset: {x: 0, y: 0, z: 0}
+          iconHandlePositionScale: {x: 1, y: 1, z: 1}
+          iconHandleRotation: {x: 0, y: 0, z: 0}
+        sceneName: 
+      hitboxes: []
+      hitboxTriangles:
+      - depth: 0
+        planeZSetup:
+          dc: 29.14317
+          ac: 0.0009210429
+          bc: -0.02883814
+        p1: {x: 1094.256, y: -682.1287}
+        p2: {x: 1406.801, y: -741.2794}
+        p3: {x: 971.1484, y: -794.3184}
+      - depth: 0
+        planeZSetup:
+          dc: 25.74858
+          ac: -0.000921067
+          bc: -0.02681676
+        p1: {x: 1094.256, y: -682.1287}
+        p2: {x: 971.1484, y: -794.3184}
+        p3: {x: 728.9312, y: -711.6552}
+      - depth: 0
+        planeZSetup:
+          dc: 13.29979
+          ac: 0.008257168
+          bc: 0.0000770224
+        p1: {x: 729.3088, y: -836.5511}
+        p2: {x: 728.9312, y: -711.6552}
+        p3: {x: 971.1484, y: -794.3184}
+      - depth: 0
+        planeZSetup:
+          dc: 13.32084
+          ac: 0.008260982
+          bc: 0.00005518319
+        p1: {x: 729.3088, y: -836.5511}
+        p2: {x: 971.1484, y: -794.3184}
+        p3: {x: 971.8665, y: -965.9316}
+      - depth: 0
+        planeZSetup:
+          dc: 2.817941
+          ac: -0.002591081
+          bc: 0.000009775072
+        p1: {x: 971.8665, y: -965.9316}
+        p2: {x: 971.1484, y: -794.3184}
+        p3: {x: 1406.801, y: -741.2794}
+      - depth: 0
+        planeZSetup:
+          dc: 2.805177
+          ac: -0.002595573
+          bc: 0.00001847043
+        p1: {x: 971.8665, y: -965.9316}
+        p2: {x: 1406.801, y: -741.2794}
+        p3: {x: 1407.156, y: -883.0121}
+      hitboxesList: []
+      dashLines:
+      - points:
+        - {x: 1123.097, y: -789.6505}
+        - {x: 1450.449, y: -883.6302}
+        - {x: 964.1417, y: -978.4036}
+        - {x: 716.3303, y: -841.5706}
+      iconHandlePosition: {x: 1061.5, y: -825, z: 0}
       hasDefaultVariation: 0
       defaultVariation:
         name: 
@@ -22326,7 +22348,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - Wow! The view is stunning!
-        groupIndex: 1
+        groupIndex: 2
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -22553,7 +22575,7 @@ MonoBehaviour:
         autoSelect: 0
         toSayAfterOpen:
         - The room feels so nice and bright!
-        groupIndex: 3
+        groupIndex: 2
         isMarkersAbove: 0
         thumbnailNamePrefix: 
         iconSpriteName: 
@@ -23472,6 +23494,9 @@ MonoBehaviour:
         thumbnailName: 
         thumbnailSprite: {fileID: 0}
         hitboxTriangles: []
+  overrideOffsetAndScale: 0
+  overrideOffsetPosition: {x: 0, y: 0, z: 0}
+  overrideOffsetScale: {x: 1, y: 1, z: 1}
   imagesFolder: 0
   backgroundColor: {r: 0, g: 0, b: 0, a: 1}
   showCollisions: 0
@@ -23487,6 +23512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740794}
@@ -23825,6 +23852,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740899}
@@ -23995,6 +24024,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740891}
   variations: []
   allVariations:
@@ -24093,6 +24124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740742}
@@ -24156,7 +24189,7 @@ MonoBehaviour:
       thumbnailName: 
       thumbnailSprite: {fileID: 0}
       hitboxTriangles: []
-    index: 9
+    index: 10
     sceneObjectInfo:
       objectName: 
       displayName: Bed
@@ -24167,7 +24200,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - Looks really comfy
-      groupIndex: 0
+      groupIndex: 2
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -24261,6 +24294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740706}
@@ -24626,6 +24661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740822}
@@ -24945,7 +24982,7 @@ MonoBehaviour:
         p1: {x: 727.2649, y: -735.0566}
         p2: {x: 1085.142, y: -504.13}
         p3: {x: 1085.265, y: -703.0847}
-    index: 10
+    index: 9
     sceneObjectInfo:
       objectName: 
       displayName: Headboard
@@ -25591,6 +25628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740882}
   variations: []
   allVariations:
@@ -26770,6 +26809,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740772}
@@ -27592,6 +27633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740854}
@@ -27760,6 +27803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740784}
@@ -28188,6 +28233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740765}
@@ -28373,6 +28420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 1790424292668740867}
   variations:
   - {fileID: 1790424292668740732}
@@ -28684,6 +28733,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740911}
@@ -29076,6 +29127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740750}
@@ -29200,7 +29253,7 @@ MonoBehaviour:
       autoSelect: 0
       toSayAfterOpen:
       - The room feels so nice and bright!
-      groupIndex: 3
+      groupIndex: 1
       isMarkersAbove: 0
       thumbnailNamePrefix: 
       iconSpriteName: 
@@ -29411,6 +29464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdde0d9173e8366385156890ebd8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnchor: {fileID: 0}
+  objectId: 
   defaultVariation: {fileID: 0}
   variations:
   - {fileID: 1790424292668740883}
