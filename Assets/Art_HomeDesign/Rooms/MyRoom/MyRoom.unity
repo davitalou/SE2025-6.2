@@ -2438,7 +2438,7 @@ MonoBehaviour:
       backwardDependencies: []
       price:
         currency: 2
-        cost: 2
+        cost: 1
       autoSelect: 0
       toSayAfterOpen:
       - The curtains frame the window nicely
@@ -5114,7 +5114,7 @@ MonoBehaviour:
       backwardDependencies: []
       price:
         currency: 2
-        cost: 2
+        cost: 1
       autoSelect: 0
       toSayAfterOpen:
       - Such a nice detail and practical too!
@@ -5436,7 +5436,7 @@ MonoBehaviour:
       backwardDependencies: []
       price:
         currency: 2
-        cost: 2
+        cost: 1
       autoSelect: 0
       toSayAfterOpen:
       - Beautiful curtains!
@@ -5650,7 +5650,7 @@ MonoBehaviour:
       backwardDependencies: []
       price:
         currency: 2
-        cost: 2
+        cost: 1
       autoSelect: 0
       toSayAfterOpen:
       - The curtains frame the window nicely
@@ -7308,7 +7308,7 @@ MonoBehaviour:
     hitboxesList: []
     dashLines: []
     iconHandlePosition: {x: 1248, y: -624, z: 0}
-    hasDefaultVariation: 1
+    hasDefaultVariation: 0
     defaultVariation:
       name: background_default
       sprites:
@@ -7688,7 +7688,7 @@ MonoBehaviour:
       backwardDependencies: []
       price:
         currency: 2
-        cost: 2
+        cost: 1
       autoSelect: 0
       toSayAfterOpen:
       - Wow! A stunning chandelier!
@@ -7866,7 +7866,7 @@ MonoBehaviour:
       backwardDependencies: []
       price:
         currency: 2
-        cost: 2
+        cost: 1
       autoSelect: 0
       toSayAfterOpen:
       - This seat turned out beautiful
