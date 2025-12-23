@@ -302,6 +302,15 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                     UnityEngine.Debug.LogException(ex);
                 }
             }
+            // TryLevel0Button is active only in decorate room scene
+            if (uiitemSetup.name == DecorateRoomScreen.UIItemName.TryLevel0Button)
+            {
+                active = (this.scene != null);
+                if (active)
+                {
+                    tryLevel0ButtonObj = uiitemSetup.widget != null ? uiitemSetup.widget.gameObject : null;
+                }
+            }
             GGUtil.SetActive(uiitemSetup.widget, active);
         }
         // Ensure skip button is hidden by default (only visible during replay)
@@ -984,8 +993,10 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
 
     // Overlay control references
     private GameObject replayButtonObj;
+    private GameObject tryLevel0ButtonObj;
     private GameObject accountToggleObj;
     private bool replayPrevVisible;
+    private bool tryLevel0PrevVisible;
     private bool accountPrevVisible;
     private bool overlayHidden;
 
@@ -1020,6 +1031,29 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                 }
             }
         }
+        if (tryLevel0ButtonObj == null)
+        {
+            for (int i = 0; i < this.uiItemSetups.Count; i++)
+            {
+                if (this.uiItemSetups[i].name == DecorateRoomScreen.UIItemName.TryLevel0Button)
+                {
+                    tryLevel0ButtonObj = this.uiItemSetups[i].widget != null ? this.uiItemSetups[i].widget.gameObject : null;
+                    break;
+                }
+            }
+            if (tryLevel0ButtonObj == null)
+            {
+                // fallback search including inactive
+                foreach (var t in Resources.FindObjectsOfTypeAll<Transform>())
+                {
+                    if (t.name == "TryLevel0Button")
+                    {
+                        tryLevel0ButtonObj = t.gameObject;
+                        break;
+                    }
+                }
+            }
+        }
         if (accountToggleObj == null)
         {
             foreach (var t in Resources.FindObjectsOfTypeAll<Transform>())
@@ -1038,8 +1072,10 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
             overlayHidden = true;
             replayPrevVisible = replayButtonObj != null ? replayButtonObj.activeSelf : true;
             accountPrevVisible = accountToggleObj != null ? accountToggleObj.activeSelf : true;
+            tryLevel0PrevVisible = tryLevel0ButtonObj != null ? tryLevel0ButtonObj.activeSelf : true;
             if (replayButtonObj != null) replayButtonObj.SetActive(false);
             if (accountToggleObj != null) accountToggleObj.SetActive(false);
+            if (tryLevel0ButtonObj != null) tryLevel0ButtonObj.SetActive(false);
         }
         else
         {
@@ -1067,8 +1103,20 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
                     }
                 }
             }
+            if (tryLevel0ButtonObj == null)
+            {
+                foreach (var t in Resources.FindObjectsOfTypeAll<Transform>())
+                {
+                    if (t.name == "TryLevel0Button")
+                    {
+                        tryLevel0ButtonObj = t.gameObject;
+                        break;
+                    }
+                }
+            }
             if (replayButtonObj != null) replayButtonObj.SetActive(replayPrevVisible);
             if (accountToggleObj != null) accountToggleObj.SetActive(accountPrevVisible);
+            if (tryLevel0ButtonObj != null) tryLevel0ButtonObj.SetActive(tryLevel0PrevVisible);
         }
     }
 
@@ -1181,6 +1229,52 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         {
             UnityEngine.Debug.LogException(ex);
         }
+    }
+
+    public void ButtonCallback_OnTryLevel0()
+    {
+        UnityEngine.Debug.Log("ButtonCallback_OnTryLevel0 called");
+        GGSoundSystem.Play(GGSoundSystem.SFXType.ButtonPress);
+        if (!BehaviourSingleton<EnergyManager>.instance.HasEnergyForOneLife())
+        {
+            OutOfLivesDialog @object = NavigationManager.instance.GetObject<OutOfLivesDialog>();
+            // Use default price for level 0
+            LivesPriceConfig.PriceConfig priceForLevelOrDefault = ScriptableObjectSingleton<LivesPriceConfig>.instance.GetPriceForLevelOrDefault(0);
+            @object.Show(priceForLevelOrDefault, new Action(this.OnAllLifesRefilled), new Action(this.OnFirstLifeRefilled), new Action(this.Init));
+            return;
+        }
+        GameScreen object2 = NavigationManager.instance.GetObject<GameScreen>();
+        Match3StagesDB.Stage stage0 = Match3StagesDB.instance.stages[0];
+        Match3GameParams initParams = new Match3GameParams();
+        initParams.level = stage0.levelReference.level;
+        if (stage0.multiLevelReference.Count > 0)
+        {
+            List<Match3StagesDB.LevelReference> multiLevelReference = stage0.multiLevelReference;
+            for (int i = 0; i < multiLevelReference.Count; i++)
+            {
+                LevelDefinition level = multiLevelReference[i].level;
+                if (level != null)
+                {
+                    initParams.levelsList.Add(level);
+                }
+            }
+        }
+        initParams.stage = stage0;
+        initParams.levelIndex = 0;
+        initParams.listener = this;
+        GiftsDefinitionDB.BuildupBooster.BoosterGift boosterGift = ScriptableObjectSingleton<GiftsDefinitionDB>.instance.buildupBooster.GetBoosterGift();
+        if (boosterGift != null)
+        {
+            initParams.giftBoosterLevel = boosterGift.level;
+            List<BoosterConfig> boosterConfig = boosterGift.boosterConfig;
+            for (int j = 0; j < boosterConfig.Count; j++)
+            {
+                BoosterConfig item = boosterConfig[j];
+                initParams.activeBoosters.Add(item);
+            }
+        }
+        object2.Show(initParams);
+        GGSoundSystem.Play(GGSoundSystem.MusicType.GameMusic);
     }
 
     private IEnumerator DoReplay(RoomReplay rr)
@@ -1446,7 +1540,8 @@ public class DecorateRoomScreen : UILayer, Match3GameListener
         SettingsButton,
         CoinsBar,
         HeartsBar,
-        ReplayButton
+        ReplayButton,
+        TryLevel0Button
     }
 
     [Serializable]
